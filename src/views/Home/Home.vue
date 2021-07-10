@@ -2,11 +2,9 @@
   <div class="home">
     <img class="logo" src="~@/assets/img/giligili_white.png" />
     <div class="wrapper">
-      <el-input
-        @focus="focus"
-        @blur="blur"
-        @keyup.enter.native="searchHandler"
-      />
+      <el-input @focus="focus" @blur="blur" @keyup.enter.native="searchHandler">
+        <i slot="suffix" class="el-input__icon el-icon-search"></i>
+      </el-input>
       <el-card v-if="isSearch">...</el-card>
     </div>
   </div>
@@ -36,5 +34,7 @@ export default {
   margin-top: 150px;
 }
 .wrapper {
+  width: 540px;
+  background-color: transparent;
 }
 </style>
