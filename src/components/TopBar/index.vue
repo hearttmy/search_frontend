@@ -3,7 +3,7 @@
     <div class="btnListWrapper">
       <el-dropdown class="btnWrapper" trigger="click" @command="searchType">
         <span class="el-dropdown-link">
-          类型<i class="el-icon-arrow-down el-icon--right"></i>
+          地区<i class="el-icon-arrow-down el-icon--right"></i>
         </span>
         <el-dropdown-menu slot="dropdown">
           <el-dropdown-item command="恐怖">黄金糕</el-dropdown-item>
