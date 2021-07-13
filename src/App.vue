@@ -25,6 +25,7 @@ export default {
   display: flex;
   flex-direction: column;
   height: 100vh;
+  width : 50vh;
 }
 .main {
   flex: 1;
