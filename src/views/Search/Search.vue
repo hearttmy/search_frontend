@@ -3,7 +3,9 @@
     <MainLayout>
       <div class="search-wrapper">
         <img class="logo" src="~@/assets/img/giligili_white.png" />
-        <SearchBar class="search-bar" />
+        <div class="search-bar-wrapper">
+          <SearchBar class="search-bar" />
+        </div>
       </div>
     </MainLayout>
   </div>
@@ -25,14 +27,18 @@ export default {
 .search-wrapper {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  background-color:red;
+  /* justify-content: space-between; */
+  background-color: red;
 }
 .logo {
   margin-left: 40px;
   width: 100px;
 }
+.search-bar-wrapper {
+  display: flex;
+  width: 300px;
+}
 .search-bar {
-  margin-left: 20px;
+  flex: 1;
 }
 </style>

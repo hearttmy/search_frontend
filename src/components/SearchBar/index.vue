@@ -12,3 +12,9 @@ export default {
   name: "SearchBar",
 };
 </script>
+
+<style scoped>
+.search >>> .el-input__inner {
+  border-radius: 20px;
+}
+</style>
