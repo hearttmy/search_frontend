@@ -7,6 +7,9 @@
           <SearchBar class="search-bar" />
         </div>
       </div>
+      <div class="clasify-wrapper">
+        <ClassifyCard v-bind="citys"></ClassifyCard>
+      </div>
     </MainLayout>
   </div>
 </template>
@@ -14,11 +17,21 @@
 <script>
 import SearchBar from "@/components/SearchBar";
 import MainLayout from "@/components/MainLayout";
+import ClassifyCard from "@/components/ClassifyCard";
 export default {
   name: "Search",
   components: {
     SearchBar,
     MainLayout,
+    ClassifyCard,
+  },
+  data() {
+    return {
+      citys: {
+        title: "城市",
+        citys: ["北京", "上海"],
+      },
+    };
   },
 };
 </script>
