@@ -1,11 +1,9 @@
 <template>
-  <div>
-    <h1>hello</h1>
-  </div>
+  <h1>hello</h1>
 </template>
+
 <script>
 export default {
-  name: "Test",
   data() {
     return;
   },

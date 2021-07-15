@@ -1,70 +1,85 @@
 <template>
-  <div>
-    <MainLayout>
+  <el-container>
+    <el-header>
+      <p id="sight">毛主席纪念堂</p>
+    </el-header>
+    <el-main>
+      <img class="logo" src="~@/assets/img/giligili_white.png" />
+
       <div class="search-wrapper">
-        <img class="logo" src="~@/assets/img/giligili_white.png" />
         <div class="search-bar-wrapper">
           <SearchBar class="search-bar" />
         </div>
       </div>
-      <div class="carousel-wrapper">
-        <div class="carousel-bar-wrapper">
-          <Carousel class="carousel-bar"> </Carousel>
-        </div>
-      </div>
-    </MainLayout>
-  </div>
+    </el-main>
+    <el-footer>Footer</el-footer>
+  </el-container>
 </template>
 
 <script>
-import SearchBar from "@/components/SearchBar";
-import MainLayout from "@/components/MainLayout";
-import Carousel from "@/components/Carousel";
 export default {
   name: "Details",
-  components: {
-    SearchBar,
-    MainLayout,
-    Carousel,
-  },
+  components: {},
+
+
 };
+// eslint-disable-next-line no-undef
+new vue({
+  el: "#sight",
+  data: {
+    msg: "毛主席纪念堂",
+  },
+});
 </script>
 
-<style scoped>
-.search-wrapper {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  /* background-color: red; */
-  padding: 0.8em;
+<style>
+.el-header {
+  background-color: transparent;
+  color: #333;
+  text-align: center;
+  line-height: 80px;
+  padding-left: 200px;
 }
-.logo {
-  margin: 3vh;
-  width: 15vh;
-  background-color: pink;
-  border-right: pink 1px solid;
+
+.el-footer {
+  background-color: #B3C0D1;
+  color: #333;
+  text-align: left;
+  line-height: 60px;
 }
-.search-bar-wrapper {
-  display: flex;
-  width: 80vh;
+
+.el-aside {
+  background-color: #D3DCE6;
+  color: #333;
+  text-align: center;
+  line-height: 200px;
 }
-.search-bar {
-  flex: 1;
+
+.el-main {
+  background-color: #E9EEF3;
+  color: #333;
+  text-align: center;
+  line-height: 1500px;
+  padding-left: 200px;
 }
-.carousel-wrapper {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  /* background-color: red; */
-  padding: 0.8em;
+
+body > .el-container {
+  margin-bottom: 40px;
 }
-.carousel-bar-wrapper {
-  display: flex;
-  width: 500vh;
+
+.el-container:nth-child(5) .el-aside,
+.el-container:nth-child(6) .el-aside {
+  line-height: 260px;
 }
-.carousel-bar {
-  flex: 1;
+
+.el-container:nth-child(7) .el-aside {
+  line-height: 320px;
+}
+.sight {
+  font-family: "Times New Roman";
+  font-size: 28px;
+
+  text-align: left;
+  line-height: 0%;
 }
 </style>
