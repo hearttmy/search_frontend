@@ -2,17 +2,18 @@
   <div class="home">
     <img class="logo" src="~@/assets/img/giligili_white.png" />
     <div class="wrapper">
-      <el-input @focus="focus" @blur="blur" @keyup.enter.native="searchHandler">
-        <i slot="suffix" class="el-input__icon el-icon-search"></i>
-      </el-input>
-      <el-card v-if="isSearch">...</el-card>
+      <SearchBar />
     </div>
   </div>
 </template>
 
 <script>
+import SearchBar from "@/components/SearchBar";
 export default {
   name: "Home",
+  components: {
+    SearchBar,
+  },
   data() {
     return {
       isSearch: false,
@@ -27,6 +28,8 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-image: url("../../assets/img/background.jpg");
+  background-size: cover;
 }
 
 .logo {
@@ -35,6 +38,6 @@ export default {
 }
 .wrapper {
   width: 540px;
-  background-color: transparent;
+  background: transparent;
 }
 </style>

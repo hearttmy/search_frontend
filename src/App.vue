@@ -14,7 +14,7 @@ import TopBar from "@/components/TopBar";
 export default {
   name: "App",
   components: {
-    TopBar
+    TopBar,
   },
 };
 </script>
@@ -28,7 +28,9 @@ export default {
 }
 .main {
   flex: 1;
-  background-image: url("./assets/img/background.jpg");
-  background-size: cover;
+}
+.el-textarea__inner,
+.el-input__inner {
+  background: transparent !important;
 }
 </style>
