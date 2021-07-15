@@ -21,7 +21,7 @@ import SearchBar from "@/components/SearchBar";
 import MainLayout from "@/components/MainLayout";
 import Carousel from "@/components/Carousel";
 export default {
-  name: "Search",
+  name: "Details",
   components: {
     SearchBar,
     MainLayout,
