@@ -1,37 +1,43 @@
 <template>
   <div class="line-wrapper">
-    <span>{{ post.title }}</span>
     <ul>
-      <li v-for="city in post.citys" :key="city"></li>
+      <li class="title">{{ title }}</li>
+      <li class="city" v-for="city in citys" :key="city">
+        <a href="/">{{ city }}</a>
+      </li>
     </ul>
   </div>
 </template>
 
 <script>
 export default {
-  name: "ClassiftyCard",
-  props: ["post"],
-  data() {
-    return {};
+  name: "ClassifyCard",
+  props: {
+    title: String,
+    citys: Array,
   },
 };
 </script>
 
 <style scoped>
+a {
+  text-decoration: none;
+  padding: 8px;
+}
 .line-wrapper {
   display: flex;
+  flex-direction: row;
   text-align: center;
+  justify-content: center;
+  font-size: 20px;
 }
-span {
+.title {
+  display: inline;
   background-color: greenyellow;
   color: white;
-  padding: 1px auto;
-  flex: 2;
 }
-li {
+.citys {
   display: inline;
   color: blue;
-  padding: 1px auto;
-  flex: 1;
 }
 </style>

@@ -8,7 +8,7 @@
         </div>
       </div>
       <div class="clasify-wrapper">
-        <ClassifyCard v-bind="citys"></ClassifyCard>
+        <ClassifyCard :title="title" :citys="citys"></ClassifyCard>
       </div>
     </MainLayout>
   </div>
@@ -27,10 +27,8 @@ export default {
   },
   data() {
     return {
-      citys: {
-        title: "城市",
-        citys: ["北京", "上海"],
-      },
+      title: "城市",
+      citys: ["北京", "上海"],
     };
   },
 };

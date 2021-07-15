@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home/Home.vue";
 import Search from "../views/Search/Search.vue";
+import Test from "../views/Test/Test.vue";
 Vue.use(VueRouter);
 
 const routes = [{
@@ -13,6 +14,11 @@ const routes = [{
     path: "/search",
     name: "Search",
     component: Search,
+  },
+  {
+    path: "/test",
+    name: "Test",
+    component: Test,
   },
 ];
 
