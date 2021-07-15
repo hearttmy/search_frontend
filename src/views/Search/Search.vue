@@ -27,16 +27,20 @@ export default {
 .search-wrapper {
   display: flex;
   flex-direction: row;
-  /* justify-content: space-between; */
-  background-color: red;
+  justify-content: flex-start;
+  align-items: center;
+  /* background-color: red; */
+  padding: 0.8em;
 }
 .logo {
-  margin-left: 40px;
-  width: 100px;
+  margin: 3vh;
+  width: 15vh;
+  background-color: pink;
+  border-right: pink 1px solid;
 }
 .search-bar-wrapper {
   display: flex;
-  width: 300px;
+  width: 80vh;
 }
 .search-bar {
   flex: 1;
