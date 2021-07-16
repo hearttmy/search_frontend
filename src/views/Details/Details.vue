@@ -1,44 +1,54 @@
 <template>
   <el-container>
-    <el-header>
-      <p id="sight">毛主席纪念堂</p>
-    </el-header>
     <el-main>
-      <img class="logo" src="~@/assets/img/giligili_white.png" />
+      <p id="sight">{{ sightname }}</p>
+      <p id="intro">{{ intro }}</p>
 
-      <div class="search-wrapper">
-        <div class="search-bar-wrapper">
-          <SearchBar class="search-bar" />
-        </div>
+      <hr />
+      <div class="carouselfig-wrapper">
+        <Carouselfig />
       </div>
+      <hr />
+      <div class="description-wrapper">
+        <p id="description">{{ description }}</p>
+      </div>
+      <hr />
+        <p id="address" >地址：{{ address }}</p>
+      <Table />
     </el-main>
     <el-footer>Footer</el-footer>
   </el-container>
 </template>
 
 <script>
+import Carouselfig from "@/components/Carouselfig";
+import Table from "@/components/Table";
+
 export default {
   name: "Details",
-  components: {},
-
-
-};
-// eslint-disable-next-line no-undef
-new vue({
-  el: "#sight",
-  data: {
-    msg: "毛主席纪念堂",
+  components: {
+    Carouselfig,
+    Table,
   },
-});
+  data() {
+    return {
+      sightname: "毛泽东纪念堂",
+      intro: "一代伟人的传奇一生",
+      description:"韶山主席纪念馆，生平事迹大汇展,伟岸塑像厅前立，资料图片讲清晰。六大革命纪念地，韶山上海加遵义。北京延安井冈山，危机转折化险关。不同时期毛泽东，工作生活列馆中。通过讲解和参观，伟人风范记心间。",
+      address: "北京市东城区天安门广场人民英雄纪念碑南面",
+    };
+  },
+};
 </script>
 
 <style>
 .el-header {
-  background-color: transparent;
+  background-color: white;
   color: #333;
   text-align: center;
-  line-height: 80px;
-  padding-left: 200px;
+  line-height: 20 px;
+  height: 20px;
+
 }
 
 .el-footer {
@@ -56,11 +66,14 @@ new vue({
 }
 
 .el-main {
-  background-color: #E9EEF3;
+  background-color: white;
   color: #333;
   text-align: center;
-  line-height: 1500px;
-  padding-left: 200px;
+  left: 200px;
+  width: 80%;
+
+  height: 1500px;
+  position: relative;
 }
 
 body > .el-container {
@@ -75,11 +88,31 @@ body > .el-container {
 .el-container:nth-child(7) .el-aside {
   line-height: 320px;
 }
-.sight {
+#sight {
   font-family: "Times New Roman";
   font-size: 28px;
 
   text-align: left;
   line-height: 0%;
 }
+.carouselfig-wrapper {
+  height: 300px;
+}
+.description-wrapper {
+  height: 200px;
+  width: 1000px;
+}
+#intro {
+  text-align: right;
+  color: #616872;
+}
+#description {
+  text-align: left;
+}
+#address {
+  text-align: left;
+  left: 10px;
+
+}
+
 </style>
