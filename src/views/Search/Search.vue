@@ -7,8 +7,10 @@
           <SearchBar class="search-bar" />
         </div>
       </div>
-      <div class="clasify-wrapper">
-        <ClassifyCard :title="title" :citys="citys"></ClassifyCard>
+      <h2>热门目的地</h2>
+      <div class="block">
+        <ClassifyBlock :lines="lines" />
+        <ClassifyBlock :lines="lines" />
       </div>
     </MainLayout>
   </div>
@@ -17,18 +19,62 @@
 <script>
 import SearchBar from "@/components/SearchBar";
 import MainLayout from "@/components/MainLayout";
-import ClassifyCard from "@/components/ClassifyCard";
+import ClassifyBlock from "@/components/ClassifyBlock";
 export default {
   name: "Search",
   components: {
     SearchBar,
     MainLayout,
-    ClassifyCard,
+    ClassifyBlock,
   },
   data() {
     return {
-      title: "城市",
-      citys: ["北京", "上海"],
+      lines: [
+        {
+          title: "北京",
+          cities: [
+            "t111wewe1",
+            "l111111",
+            "xxxxxxx",
+            "t111wewe1",
+            "xxxxxxxxxx",
+            "l111111",
+          ],
+        },
+        {
+          title: "北京",
+          cities: [
+            "t111wewe1",
+            "l111111",
+            "xxxxxxx",
+            "t111wewe1",
+            "l111111",
+            "xxxxxxx",
+          ],
+        },
+        {
+          title: "北京",
+          cities: [
+            "t111wewe1",
+            "l111111",
+            "xxxxxxx",
+            "t111wewe1",
+            "l111111",
+            "xxxxxxx",
+          ],
+        },
+        {
+          title: "北京",
+          cities: [
+            "t111wewe1",
+            "l111111",
+            "xxxxxxx",
+            "t111wewe1",
+            "l111111",
+            "xxxxxxx",
+          ],
+        },
+      ],
     };
   },
 };
@@ -56,4 +102,14 @@ export default {
 .search-bar {
   flex: 1;
 }
+.block {
+  display: flex;
+}
+div {
+  font-family: Arial, "Lucida Grande", "Microsoft Yahei", "Hiragino Sans GB",
+    "Hiragino Sans GB W3", SimSun, "PingFang SC", STHeiti;
+}
+/* h2 {
+  text-align: center;
+} */
 </style>
