@@ -4,6 +4,7 @@ import Home from "../views/Home/Home.vue";
 import Search from "../views/Search/Search.vue";
 import Test from "../views/Test/Test.vue";
 import Details from "../views/Details/Details.vue";
+
 Vue.use(VueRouter);
 
 const routes = [

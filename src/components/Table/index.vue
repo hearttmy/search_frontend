@@ -1,6 +1,6 @@
 <template>
   <el-table :data="tableData" style="width: 100%">
-     <el-table-column label="景区" width="170">
+    <el-table-column label="景区" width="170">
       <template slot-scope="scope">
         <el-popover trigger="hover" placement="top">
           <!-- <p>{{ scope.row.sightname }}</p> -->
@@ -44,7 +44,9 @@ export default {
   },
   methods: {
     bookticket() {
-      alert("确定吗");
+      if (confirm("确定订票吗？")) {
+        window.location.href = "http://www.baidu.com";
+      }
     },
   },
 };
