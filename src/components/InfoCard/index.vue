@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="img-wrapper">
-      <img :src="post.imgurl" @click="jump" />
+      <img :src="post.imgurl" @click="jump" class="img" />
     </div>
     <div class="info-wrapper">
       <h3>
@@ -73,8 +73,16 @@ export default {
   width: 800px;
   height: 200px;
 }
+
 .img-wrapper {
   float: left;
+  width: 260px;
+  height: 200px;
+}
+.img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .info-wrapper {
   padding-left: 20px;
