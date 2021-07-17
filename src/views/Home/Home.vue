@@ -2,17 +2,19 @@
   <div class="home">
     <img class="logo" src="~@/assets/img/giligili_white.png" />
     <div class="wrapper">
-      <el-input @focus="focus" @blur="blur" @keyup.enter.native="searchHandler">
-        <i slot="suffix" class="el-input__icon el-icon-search"></i>
-      </el-input>
+      <Search />
       <el-card v-if="isSearch">...</el-card>
     </div>
   </div>
 </template>
 
 <script>
+import Search from "@/components/Search";
 export default {
   name: "Home",
+  components: {
+    Search,
+  },
   data() {
     return {
       isSearch: false,
