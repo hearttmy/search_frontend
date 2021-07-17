@@ -7,7 +7,7 @@
         </span>
         <el-dropdown-menu slot="dropdown">
           <el-dropdown-item command="恐怖">黄金糕</el-dropdown-item>
-          <el-dropdown-item>狮子头</el-dropdown-item>
+          <el-dropdown-item>hello</el-dropdown-item>
           <el-dropdown-item>螺蛳粉</el-dropdown-item>
           <el-dropdown-item>双皮奶</el-dropdown-item>
           <el-dropdown-item>蚵仔煎</el-dropdown-item>

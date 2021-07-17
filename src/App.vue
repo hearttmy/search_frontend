@@ -28,9 +28,7 @@ export default {
 }
 .main {
   flex: 1;
-}
-.el-textarea__inner,
-.el-input__inner {
-  background: transparent !important;
+  background-image: url("./assets/img/background.jpg");
+  background-size: cover;
 }
 </style>
