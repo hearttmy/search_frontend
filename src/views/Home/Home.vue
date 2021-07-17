@@ -2,18 +2,18 @@
   <div class="home">
     <img class="logo" src="~@/assets/img/giligili_white.png" />
     <div class="wrapper">
-      <Search />
+      <SearchBar />
       <el-card v-if="isSearch">...</el-card>
     </div>
   </div>
 </template>
 
 <script>
-import Search from "@/components/Search";
+import SearchBar from "@/components/SearchBar";
 export default {
   name: "Home",
   components: {
-    Search,
+    SearchBar,
   },
   data() {
     return {
@@ -29,6 +29,8 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-image: url("../../assets/img/background.jpg");
+  background-size: cover;
 }
 
 .logo {

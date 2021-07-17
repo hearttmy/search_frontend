@@ -1,4 +1,4 @@
-const baseUrl = "http://127.0.0.1:9200";
+const baseURL = "http://127.0.0.1:9200/qunar";
 export default {
-  baseUrl,
+  baseURL,
 };
