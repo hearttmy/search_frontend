@@ -1,18 +1,26 @@
 <template>
   <div class="block">
-    <el-carousel trigger="click" height="300px">
-      <el-carousel-item v-for="item in 4" :key="item">
-        <h3 class="small">{{ item }}</h3>
+    <el-carousel trigger="click" height="400px" >
+      <el-carousel-item v-for="item in pics" :key="item">
+        <img v-bind:src="item" class="picwrap" />
       </el-carousel-item>
     </el-carousel>
   </div>
 </template>
 <script>
+import pic1URL from "@/assets/img/wKgB3FDn5Z-ARvoZABFCIed9B3Q44.jpeg";
+import pic2URL from "@/assets/img/wKgBs1cotEWAPrdIAAgrS_ozwjU65.jpeg";
+
+
 export default {
   name: "Carouselfig",
   data() {
-    return {};
+    return {
+      pics: [pic1URL, pic2URL],
+
+    };
   },
+
 };
 </script>
 <style>
@@ -30,5 +38,11 @@ export default {
 
 .el-carousel__item:nth-child(2n + 1) {
   background-color: #d3dce6;
+}
+
+.picwrap {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 </style>
