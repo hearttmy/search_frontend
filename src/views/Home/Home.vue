@@ -3,21 +3,21 @@
     <img class="logo" src="~@/assets/img/giligili_white.png" />
     <div class="wrapper">
       <SearchBar />
+      <el-card v-if="isSearch">...</el-card>
     </div>
   </div>
 </template>
-
 <script>
 import SearchBar from "@/components/SearchBar";
 export default {
   name: "Home",
-  components: {
-    SearchBar,
-  },
   data() {
     return {
-      isSearch: false,
+      issearch: false,
     };
+  },
+  components: {
+    SearchBar,
   },
 };
 </script>
@@ -28,8 +28,6 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-image: url("../../assets/img/background.jpg");
-  background-size: cover;
 }
 
 .logo {
@@ -38,6 +36,6 @@ export default {
 }
 .wrapper {
   width: 540px;
-  background: transparent;
+  background-color: transparent;
 }
 </style>

@@ -28,7 +28,7 @@ export default {
   methods: {
     searchHandler() {
       if (this.input.length > 0) {
-        this.$router.push("/search/?key=" + this.input);
+        //this.$router.push("/search/?key=" + this.input);
       }
     },
   },
