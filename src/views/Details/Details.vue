@@ -13,7 +13,7 @@
         <p id="description">{{ description }}</p>
       </div>
       <hr />
-        <p id="address" >地址：{{ address }}</p>
+      <p id="address">地址：{{ address }}</p>
       <Table />
     </el-main>
     <el-footer>Footer</el-footer>
@@ -34,7 +34,8 @@ export default {
     return {
       sightname: "毛泽东纪念堂",
       intro: "一代伟人的传奇一生",
-      description:"韶山主席纪念馆，生平事迹大汇展,伟岸塑像厅前立，资料图片讲清晰。六大革命纪念地，韶山上海加遵义。北京延安井冈山，危机转折化险关。不同时期毛泽东，工作生活列馆中。通过讲解和参观，伟人风范记心间。",
+      description:
+        "韶山主席纪念馆，生平事迹大汇展,伟岸塑像厅前立，资料图片讲清晰。六大革命纪念地，韶山上海加遵义。北京延安井冈山，危机转折化险关。不同时期毛泽东，工作生活列馆中。通过讲解和参观，伟人风范记心间。",
       address: "北京市东城区天安门广场人民英雄纪念碑南面",
     };
   },
@@ -48,18 +49,17 @@ export default {
   text-align: center;
   line-height: 20 px;
   height: 20px;
-
 }
 
 .el-footer {
-  background-color: #B3C0D1;
+  background-color: #b3c0d1;
   color: #333;
   text-align: left;
   line-height: 60px;
 }
 
 .el-aside {
-  background-color: #D3DCE6;
+  background-color: #d3dce6;
   color: #333;
   text-align: center;
   line-height: 200px;
@@ -112,7 +112,5 @@ body > .el-container {
 #address {
   text-align: left;
   left: 10px;
-
 }
-
 </style>

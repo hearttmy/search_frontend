@@ -4,7 +4,7 @@
       <div class="search-wrapper">
         <img class="logo" src="~@/assets/img/giligili_white.png" />
         <div class="search-bar-wrapper">
-          <SearchBar class="search-bar" />
+          <SearchBarPlus :tags="tags" class="search-bar" />
         </div>
       </div>
       <h2>热门目的地</h2>
@@ -17,18 +17,19 @@
 </template>
 
 <script>
-import SearchBar from "@/components/SearchBar";
+import SearchBarPlus from "@/components/SearchBarPlus";
 import MainLayout from "@/components/MainLayout";
 import ClassifyBlock from "@/components/ClassifyBlock";
 export default {
   name: "Search",
   components: {
-    SearchBar,
+    SearchBarPlus,
     MainLayout,
     ClassifyBlock,
   },
   data() {
     return {
+      tags: ["工厂", "西湖", "旅行", "五A"],
       lines: [
         {
           title: "北京",
