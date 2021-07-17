@@ -1,5 +1,5 @@
 <template>
-  <el-table :data="tableData" style="width: 100%">
+  <el-table :data="tableData" style="width: 100%" class="pricetable">
     <el-table-column label="景区" width="170">
       <template slot-scope="scope">
         <el-popover trigger="hover" placement="top">
@@ -51,3 +51,8 @@ export default {
   },
 };
 </script>
+<style scoped>
+.pricetable{
+  color: #EFF7FF;
+}
+</style>

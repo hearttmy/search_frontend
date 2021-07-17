@@ -1,26 +1,23 @@
 <template>
   <div>
-    <table>
-      <tr id="tagtr">
-        <td
-          width="100px"
-          @click="clickfirsttd"
-          @mouseover="overfirst"
-          id="firsttd"
-        >
-          <i class="el-icon-s-home"></i>
-          <p>概述</p>
-        </td>
-        <td width="100px" id="secondtd" @click="clicksecondtd">
-          <i class="el-icon-s-grid"></i>
+    <div >
+      <table id="tag">
+        <tr>
+          <td width="100px" id="firsttd" @click="clickhandle1">
+            <i class="el-icon-s-home"></i>
+            <p>概述</p>
+          </td>
+          <td width="100px" id="secondtd" @click="clickhandle2">
+            <i class="el-icon-s-grid"></i>
 
-          <p>相关</p>
-        </td>
-      </tr>
-    </table>
+            <p>相关</p>
+          </td>
+        </tr>
+      </table>
+    </div>
     <div id="first" v-show="isadisplay">
-      <p id="intro">{{ intro }}</p>
       <hr />
+
       <div>
         <i class="el-icon-picture-outline" id="summary">景点图片</i>
         <div class="carouselfig-wrapper">
@@ -37,6 +34,8 @@
       </div>
     </div>
     <div id="second" v-show="isbdisplay">
+      <hr />
+
       <div>
         <p id="address">地址：{{ address }}</p>
         <Table />
@@ -52,7 +51,6 @@ export default {
   data() {
     return {
       activeName: "first",
-      intro: "一代伟人的传奇一生",
       description:
         "韶山主席纪念馆，生平事迹大汇展,伟岸塑像厅前立，资料图片讲清晰。六大革命纪念地，韶山上海加遵义。北京延安井冈山，危机转折化险关。不同时期毛泽东，工作生活列馆中。通过讲解和参观，伟人风范记心间。",
       address: "北京市东城区天安门广场人民英雄纪念碑南面",
@@ -61,12 +59,13 @@ export default {
     };
   },
   methods: {
-    clicksecondtd() {
+    clickhandle2() {
       this.isadisplay = false;
       this.isbdisplay = true;
     },
-    overfirst() {
-      // alert("hello");
+    clickhandle1() {
+      this.isadisplay = true;
+      this.isbdisplay = false;
     },
   },
   components: {
@@ -87,10 +86,7 @@ export default {
   height: 200px;
   width: 800px;
 }
-#intro {
-  text-align: right;
-  color: #616872;
-}
+
 #description {
   text-align: left;
   text-indent: 2em;
@@ -115,11 +111,9 @@ export default {
 .el-icon-s-grid {
   color: chocolate;
 }
-#tagtr {
+#tag {
   align-content: center;
   text-align: center;
-}
-#tagtr {
   position: relative;
   left: 400px;
 }
@@ -127,6 +121,9 @@ export default {
   background-color: red;
 } */
 #secondtd:hover {
-  background-color: red;
+  border-bottom: 1px solid rgb(219, 40, 70);
+}
+#firsttd:hover {
+  border-bottom: 1px solid rgb(219, 40, 70);
 }
 </style>

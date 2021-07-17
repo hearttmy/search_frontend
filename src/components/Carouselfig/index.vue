@@ -10,13 +10,14 @@
 <script>
 import pic1URL from "@/assets/img/wKgB3FDn5Z-ARvoZABFCIed9B3Q44.jpeg";
 import pic2URL from "@/assets/img/wKgBs1cotEWAPrdIAAgrS_ozwjU65.jpeg";
+import pic3URL from "@/assets/img/wKgE2l1AT1yAN-EiACb1k6AmZkU591.jpg";
 
 
 export default {
   name: "Carouselfig",
   data() {
     return {
-      pics: [pic1URL, pic2URL],
+      pics: [pic1URL, pic2URL, pic3URL],
 
     };
   },
