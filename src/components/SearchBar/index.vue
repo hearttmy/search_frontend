@@ -26,11 +26,15 @@ export default {
       type: String,
       default: "light",
     },
+    initalWords: {
+      type: String,
+      default: "",
+    },
   },
   data() {
     return {
       isSearch: false,
-      searchWords: "",
+      searchWords: this.initalWords,
     };
   },
   methods: {

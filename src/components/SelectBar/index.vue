@@ -5,7 +5,7 @@
       v-for="(item, i) in typeArray"
       :key="item"
       :style="{ color: itemColor(i) }"
-      @click="handleSelect(item)"
+      @click="handleSelect(i)"
       class="item-wrapper"
     >
       {{ item }}
@@ -30,8 +30,8 @@ export default {
     },
   },
   methods: {
-    handleSelect(item) {
-      console.log(item);
+    handleSelect(index) {
+      this.selectedIndex = index;
     },
     itemColor(index) {
       if (index === this.selectedIndex) {
@@ -57,5 +57,6 @@ export default {
 
 .item-wrapper {
   margin-left: 40px;
+  cursor: pointer;
 }
 </style>
