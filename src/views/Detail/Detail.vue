@@ -85,6 +85,7 @@ export default {
 
 .tap-wrapper {
   margin-top: 20px;
+  margin-bottom: 10px;
 }
 .back-wrapper {
   color: #1cafc5;
