@@ -1,11 +1,6 @@
 <template>
   <div>
-    <el-menu
-      class="nav-bar"
-      @select="selectIndex"
-      :default-active="$route.path"
-      router
-    >
+    <el-menu class="nav-bar" :default-active="$route.path" router>
       <el-menu-item :index="'/detail/' + item_id + '/summary'">
         <i class="el-icon-reading"></i>信息简介
       </el-menu-item>
@@ -24,11 +19,13 @@
 <script>
 export default {
   name: "DetailNavBar",
-  props: {
-    item_id: {
-      type: String,
-      default: "",
-    },
+  data() {
+    return {
+      item_id: "",
+    };
+  },
+  created() {
+    this.item_id = this.$route.params.id;
   },
   methods: {
     selectIndex() {},

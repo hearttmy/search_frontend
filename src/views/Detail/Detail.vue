@@ -13,11 +13,11 @@
           <DetailCover :item="detail" />
         </div>
         <div class="tap-wrapper">
-          <DetailNavBar :item_id="detail.id" />
+          <DetailNavBar />
         </div>
         <div class="content-wrapper">
           <transition name="el-fade-in-linear">
-            <router-view :item="detail"></router-view>
+            <router-view></router-view>
           </transition>
         </div>
       </div>
@@ -50,6 +50,7 @@ export default {
     searchDetail() {
       SearchProvider.searchForDetail({ id: this.id }).then((res) => {
         this.detail = res;
+        this.$store.commit("detail/set_item", this.detail);
         console.log(this.detail);
       });
     },

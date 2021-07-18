@@ -57,7 +57,7 @@ export default {
   }
 }
 /deep/ .search-icon-light {
-  color: #c0c4cc;
+  color: black;
 }
 
 /deep/ .search-icon-dark {
