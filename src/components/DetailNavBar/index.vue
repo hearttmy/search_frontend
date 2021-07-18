@@ -51,6 +51,9 @@ export default {
     background-color: transparent;
     color: #1cafc5;
   }
+  .el-menu-item:focus {
+    border-bottom: 2px #1cafc5 solid;
+  }
   .el-menu-item:hover i,
   .el-menu-item:focus i {
     color: inherit;

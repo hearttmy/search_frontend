@@ -6,8 +6,8 @@
     </div>
     <div class="open-time">
       <div class="title"><i class="el-icon-time" /> 开放时间</div>
-      <div class="content" v-for="item in open_time" :key="item" v-show="item">
-        {{ item }}
+      <div class="content" v-for="time in open_time" :key="time" v-show="time">
+        {{ time }}
       </div>
     </div>
   </div>
@@ -21,6 +21,7 @@ export default {
   },
   computed: {
     open_time() {
+      if (!this.item.open_time) return [];
       const timeList = this.item.open_time.split("\r\n").slice(1);
       return timeList;
     },

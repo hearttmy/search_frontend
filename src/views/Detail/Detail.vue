@@ -16,7 +16,9 @@
           <DetailNavBar :item_id="detail.id" />
         </div>
         <div class="content-wrapper">
-          <router-view :item="detail"></router-view>
+          <transition name="el-fade-in-linear">
+            <router-view :item="detail"></router-view>
+          </transition>
         </div>
       </div>
     </el-card>
