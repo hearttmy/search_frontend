@@ -1,7 +1,7 @@
 <template>
   <div class="search-wrapper">
     <div class="top-wrapper">
-      <img class="logo" src="~@/assets/img/logo.png" />
+      <Logo class="logo-wrapper" />
       <SearchBar
         mainColor="dark"
         :style="{ flex: 1 }"
@@ -11,8 +11,18 @@
 
     <div class="content-wrapper">
       <el-card class="select-bar-wrapper" shadow="never">
-        <SelectBar typeTitle="地区" :typeArray="typeArray.areaArray" />
-        <SelectBar class="select-bar-margin" typeTitle="排序" />
+        <SelectBar
+          typeTitle="地区"
+          :typeArray="typeArray.areaArray"
+          typeKey="area"
+          @handleSelect="search"
+        />
+        <!-- <SelectBar
+          class="select-bar-margin"
+          typeTitle="排序"
+          typeKey="sort"
+          @handleSelect="search"
+        /> -->
       </el-card>
 
       <div class="result-wrapper">
@@ -44,25 +54,13 @@ import SearchBar from "@/components/SearchBar";
 import SearchCard from "@/components/SearchCard";
 import SelectBar from "@/components/SelectBar";
 import SearchProvider from "@/api/request/search";
+import Logo from "@/components/Logo";
 
 export default {
   name: "Search",
-  components: { SearchBar, SelectBar, SearchCard },
+  components: { SearchBar, SelectBar, SearchCard, Logo },
   created() {
-    this.$route.params.searchParams.split("&").forEach((item) => {
-      const str_arr = item.split("=");
-      this.payload[str_arr[0]] = str_arr[1];
-    });
-    this.payload.size = 8;
-    this.payload.from = 0;
-    this.initalWords = this.payload["word"] ? this.payload["word"] : "";
-    SearchProvider.searchCount().then((res) => {
-      this.resultCount = res;
-    });
-    SearchProvider.searchForList(this.payload).then((res) => {
-      this.resultList = res;
-      console.log(res);
-    });
+    this.search();
   },
   data() {
     return {
@@ -73,7 +71,10 @@ export default {
       resultCount: 0,
       initalWords: "",
       currentPage: 1,
-      payload: {},
+      payload: {
+        size: 8,
+        from: 0,
+      },
     };
   },
   methods: {
@@ -82,6 +83,19 @@ export default {
       SearchProvider.searchForList(this.payload).then((res) => {
         this.resultList = res;
       });
+    },
+    search() {
+      this.payload = { ...this.$store.state.search, ...this.payload };
+      this.initalWords = this.payload["word"] ? this.payload["word"] : "";
+      SearchProvider.searchCount().then((res) => {
+        this.resultCount = res;
+      });
+      SearchProvider.searchForList(this.payload).then((res) => {
+        this.resultList = res;
+      });
+    },
+    toHomePage() {
+      this.$router.push("/");
     },
   },
 };
@@ -100,9 +114,10 @@ export default {
   width: 900px;
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
-.logo {
-  height: 50px;
+.logo-wrapper {
+  height: 100px;
   margin-right: 50px;
 }
 

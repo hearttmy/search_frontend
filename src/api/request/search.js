@@ -20,7 +20,20 @@ const SearchProvider = {
       .then((res) => res.data.hits.hits)
       .catch((err) => err);
   },
-  searchForDetail: () => {},
+  searchForDetail: (payload) => {
+    const parsedPayload = {};
+    parsedPayload.query = {
+      match: {
+        id: payload.id,
+      },
+    };
+    parsedPayload.size = payload.size;
+    parsedPayload.from = payload.from;
+    return request
+      .post("/_search", parsedPayload)
+      .then((res) => res.data.hits.hits[0]._source)
+      .catch((err) => err);
+  },
 };
 
 export default SearchProvider;

@@ -25,19 +25,30 @@ export default {
       type: Array,
       default: () => [],
     },
-    selectedIndex: {
-      type: Number,
+    typeKey: {
+      type: String,
     },
   },
   methods: {
     handleSelect(index) {
-      this.selectedIndex = index;
+      this.$store.commit("search/set_area", this.typeArray[index]);
+      this.$emit("handleSelect");
     },
     itemColor(index) {
       if (index === this.selectedIndex) {
         return "blue";
       }
       return this.$store.getters.themeColor;
+    },
+  },
+  computed: {
+    selectedIndex() {
+      return this.typeArray.findIndex((e) => {
+        if (e === this.$store.state.search[this.typeKey]) {
+          return true;
+        }
+        return false;
+      }, this);
     },
   },
 };

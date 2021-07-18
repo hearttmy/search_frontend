@@ -39,7 +39,8 @@ export default {
   },
   methods: {
     searchHandler() {
-      this.$router.push(`/search/word=${this.searchWords}`);
+      this.$store.commit("search/set_word", this.searchWords);
+      if (this.$route.path !== "/search") this.$router.push("/search");
     },
   },
 };
@@ -50,7 +51,6 @@ export default {
   /deep/ .el-input__inner {
     border-radius: 50px;
     background-color: transparent;
-    color: black;
   }
   /deep/ .search-icon {
     cursor: pointer;

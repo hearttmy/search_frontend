@@ -1,5 +1,6 @@
 <template>
-  <div class="topBar" :style="{ backgroundColor: $store.getters.themeColor }">
+  <div class="topBar" :style="{ backgroundColor: bgColor }">
+    <Logo class="logo-wrapper" />
     <div class="btnListWrapper">
       <el-dropdown class="btnWrapper" trigger="click" @command="searchType">
         <span class="el-dropdown-link">
@@ -18,11 +19,25 @@
 </template>
 
 <script>
+import Logo from "@/components/Logo";
+
 export default {
   name: "TopBar",
+  components: { Logo },
+  props: {
+    isHome: {
+      type: Boolean,
+      default: false,
+    },
+  },
   methods: {
     searchType(v) {
       this.$router.push(`/search/type/${v}`);
+    },
+  },
+  computed: {
+    bgColor() {
+      return this.$store.getters.themeColor;
     },
   },
 };
@@ -33,14 +48,19 @@ export default {
   height: 6vh;
   min-height: 45px;
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
+
+.logo-wrapper {
+  height: 100%;
+  margin-left: 20px;
+}
+
 .btnListWrapper {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   padding-right: 30px;
 }
 

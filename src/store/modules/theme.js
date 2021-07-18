@@ -1,9 +1,9 @@
 const state = {
-  themeColor: "#f06292",
+  themeColor: "#1cafc5",
 };
 
 const mutations = {
-  SET_THEMECOLOR: (state, themeColor) => {
+  set_themeColor: (state, themeColor) => {
     state.themeColor = themeColor;
   },
 };

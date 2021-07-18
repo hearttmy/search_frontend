@@ -1,13 +1,13 @@
 <template>
   <el-card :body-style="{ padding: '0px' }" :style="{ 'margin-top': '15px' }">
     <div class="card-wrapper">
-      <img class="cover" :src="item.img_url" />
+      <img class="cover" :src="item.img_url" @click="handleClick" />
       <div class="text-wrapper">
-        <div class="caption">{{ item.sight }}</div>
+        <div class="caption" @click="handleClick">{{ item.sight }}</div>
         <div class="area-hot">
           <div>[{{ item.area }}]</div>
           <div class="hot">
-            热度：
+            评分：
             <el-rate
               v-model="item.score"
               disabled
@@ -28,7 +28,9 @@
           <span class="small-font">起</span>
         </div>
 
-        <el-button class="detail-btn">查看景点>></el-button>
+        <el-button class="detail-btn" @click="handleClick"
+          >查看景点>></el-button
+        >
         <div class="count small-font">月销量：{{ item.count }}</div>
       </div>
     </div>
@@ -48,6 +50,11 @@ export default {
     return {
       colors: ["#99A9BF", "#F7BA2A", "#FF9900"],
     };
+  },
+  methods: {
+    handleClick() {
+      this.$router.push(`/detail/${this.item.id}`);
+    },
   },
   computed: {
     price() {
@@ -134,10 +141,13 @@ export default {
   font-weight: 700;
   font-size: 14px;
 }
-.detail-btn:hover {
+.detail-btn:hover,
+.detail-btn:active,
+.detail-btn:focus {
   background-color: #189cb1;
   color: white;
 }
+
 .count {
   margin-top: 10px;
 }
