@@ -9,12 +9,26 @@
           <div class="grid-content">
             <img v-bind:src="imgURL" /></div
         ></el-col>
-        <el-col :span="8"
+        <el-col :span="9"
           ><div class="grid-content" id="intro">
-
             <p id="sight">{{ sightname }}</p>
+            <p id="area">{{ areaname }}</p>
             <p id="introsent">{{ intro }}</p>
-
+          </div></el-col
+        >
+        <el-col :span="8"
+          ><div class="grid-content" id="rate">
+            <el-rate
+              v-model="score"
+              disabled
+              show-score
+              text-color="#ff9900"
+              score-template="{value}"
+            >
+            </el-rate>
+            <div id="level">
+              {{ level }}
+            </div>
           </div></el-col
         >
       </el-row>
@@ -52,7 +66,9 @@ export default {
       sightname: "毛泽东纪念堂",
       imgURL: Imiga,
       intro: "一代伟人的传奇一生",
-
+      areaname: "北京 北京 东城区",
+      score: 3.7,
+      level: "4A景区",
     };
   },
 };
@@ -123,7 +139,6 @@ body > .el-container {
   color: rgb(141, 170, 34);
 }
 
-
 .el-col {
   border-radius: 4px;
 }
@@ -131,22 +146,29 @@ body > .el-container {
 .grid-content {
   border-radius: 4px;
   min-height: 36px;
-  width:300px;
+  width: 300px;
   text-align: left;
 }
 .row-bg {
   padding: 10px 0;
   background-color: #f9fafc;
 }
-#intro{
+#intro {
   position: relative;
-  top:80px;
-  left:20px;
-
-
+  top: 80px;
+  left: 20px;
 }
 #introsent {
   text-align: right;
   color: #616872;
+}
+#level {
+  width: 18%;
+  line-height: 20px;
+  height: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
+  border-color: yellow;
+  border-style: solid;
+  text-align: center;
 }
 </style>
