@@ -7,11 +7,15 @@
           <SearchBar class="search-bar" />
         </div>
       </div>
-      <h2>热门目的地</h2>
-      <div class="block">
-        <ClassifyBlock :lines="lines" />
-        <ClassifyBlock :lines="lines" />
-      </div>
+      <Tags></Tags>
+      <Taxonomy
+        v-for="i in [0, 1, 2, 3, 4]"
+        :key="i"
+        :title="'热度' + i"
+        :id="i"
+        :selected="selected[i]"
+        :items="[111111111, 2, 3, 4, 5, 6, 7, 2313, 23123, 123123]"
+      ></Taxonomy>
     </MainLayout>
   </div>
 </template>
@@ -19,62 +23,19 @@
 <script>
 import SearchBar from "@/components/SearchBar";
 import MainLayout from "@/components/MainLayout";
-import ClassifyBlock from "@/components/ClassifyBlock";
+import Taxonomy from "@/components/Taxonomy";
+import Tags from "@/components/Tags";
 export default {
   name: "Search",
   components: {
     SearchBar,
     MainLayout,
-    ClassifyBlock,
+    Taxonomy,
+    Tags,
   },
   data() {
     return {
-      lines: [
-        {
-          title: "北京",
-          cities: [
-            "t111wewe1",
-            "l111111",
-            "xxxxxxx",
-            "t111wewe1",
-            "xxxxxxxxxx",
-            "l111111",
-          ],
-        },
-        {
-          title: "北京",
-          cities: [
-            "t111wewe1",
-            "l111111",
-            "xxxxxxx",
-            "t111wewe1",
-            "l111111",
-            "xxxxxxx",
-          ],
-        },
-        {
-          title: "北京",
-          cities: [
-            "t111wewe1",
-            "l111111",
-            "xxxxxxx",
-            "t111wewe1",
-            "l111111",
-            "xxxxxxx",
-          ],
-        },
-        {
-          title: "北京",
-          cities: [
-            "t111wewe1",
-            "l111111",
-            "xxxxxxx",
-            "t111wewe1",
-            "l111111",
-            "xxxxxxx",
-          ],
-        },
-      ],
+      selected: this.$store.state.classify.options,
     };
   },
 };
@@ -102,14 +63,8 @@ export default {
 .search-bar {
   flex: 1;
 }
-.block {
-  display: flex;
-}
 div {
   font-family: Arial, "Lucida Grande", "Microsoft Yahei", "Hiragino Sans GB",
     "Hiragino Sans GB W3", SimSun, "PingFang SC", STHeiti;
 }
-/* h2 {
-  text-align: center;
-} */
 </style>

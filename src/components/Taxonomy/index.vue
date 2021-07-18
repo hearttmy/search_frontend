@@ -1,39 +1,38 @@
 <template>
   <div class="taxonomy">
-    <div class="first-line">
-      <sapn class="title">{{ title }}</sapn>
-
-      <el-collapse-transition>
-        <span>
-          <div
-            v-show="showFirst"
-            v-for="(item, index) in items.slice(0, 5)"
-            v-bind:key="index"
-            class="item"
-            :class="index == selected ? 'selected' : 'unselected'"
-            @click="selected = index"
-          >
-            {{ item }}
-          </div>
+    <div class="title">{{ title }}</div>
+    <div>
+      <div class="first-line">
+        <el-collapse-transition>
+          <span>
+            <div
+              v-for="(item, index) in items.slice(0, 6)"
+              v-bind:key="index"
+              class="item"
+              :class="index == selected ? 'selected' : 'unselected'"
+              @click="setOption(index)"
+            >
+              {{ item }}
+            </div>
+          </span>
+        </el-collapse-transition>
+        <span class="icon" @click="dropdown">
+          <i class="el-icon-arrow-down el-icon--right"></i>
         </span>
-      </el-collapse-transition>
-
-      <span class="el-dropdown-link" @click="dropdown">
-        <i class="el-icon-arrow-down el-icon--right"></i>
-      </span>
-    </div>
-    <el-collapse-transition>
-      <div class="dropdown-line" v-show="!showFirst">
-        <span
-          class="c-type"
-          v-for="(item, index) in items"
-          v-bind:key="index"
-          :class="['item', index == selected ? 'selected' : 'unselected']"
-          @click="selected = index"
-          >{{ item }}</span
-        >
       </div>
-    </el-collapse-transition>
+      <el-collapse-transition>
+        <div class="dropdown-line" v-show="!showFirst">
+          <span
+            class="c-type"
+            v-for="(item, index) in items.slice(6, 100)"
+            v-bind:key="index"
+            :class="['item', index + 6 == selected ? 'selected' : 'unselected']"
+            @click="setOption(index + 6)"
+            >{{ item }}</span
+          >
+        </div>
+      </el-collapse-transition>
+    </div>
   </div>
 </template>
 
@@ -55,6 +54,14 @@ export default {
     dropdown() {
       this.showFirst = !this.showFirst;
     },
+    setOption(index) {
+      this.selected = index;
+      this.$store.commit("classify/setOption", {
+        id: this.id,
+        name: this.items[this.selected],
+        selected: this.selected,
+      });
+    },
   },
 };
 </script>
@@ -65,6 +72,7 @@ export default {
   padding: 10px;
   border-top: 1px solid #ddd;
   font-family: "elementdoc" !important;
+  display: inline-flex;
 }
 .title {
   text-align: center;
@@ -76,17 +84,14 @@ export default {
   padding: 2px 5px 2px 5px;
   border-radius: 16px;
   cursor: pointer;
-  width: 100px;
-  margin-left: 20px;
+  width: 120px;
+  margin-left: 40px;
   text-align: center;
   font-size: 16px;
   align-items: center;
   justify-content: center;
 }
-.el-dropdown-line {
-  margin-left: 20vh;
-}
-.el-dropdown-link {
+.icon {
   float: right;
 }
 .selected {
