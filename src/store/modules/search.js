@@ -1,6 +1,6 @@
 const state = {
   word: "",
-  area: "",
+  area: "1231",
   sort: "",
 };
 
@@ -11,6 +11,9 @@ const mutations = {
   set_area: (state, data) => {
     state.area = data;
   },
+  set_sort: (state, data) => {
+    state.sort = data;
+  }
 };
 
 export default {

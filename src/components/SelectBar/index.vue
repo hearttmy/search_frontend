@@ -1,14 +1,37 @@
 <template>
   <div class="wrapper">
     <div class="title">{{ typeTitle + ":" }}</div>
-    <div
-      v-for="(item, i) in typeArray"
-      :key="item"
-      :style="{ color: itemColor(i) }"
-      @click="handleSelect(i)"
-      class="item-wrapper"
-    >
-      {{ item }}
+    <div class="content-wrapper">
+      <div class="first-line">
+        <div
+          v-for="(item, i) in typeArray.slice(0, size)"
+          :key="item"
+          :style="{ color: itemColor(i) }"
+          @click="handleSelect(i)"
+          class="item-wrapper"
+        >
+          {{ item }}
+        </div>
+        <span class="icon" v-show="typeArray.length > size" @click="dropdown">
+          <i class="el-icon-arrow-down el-icon--right"></i>
+        </span>
+      </div>
+      <div
+        class="dropdown-line"
+        v-show="isDropdown"
+        v-for="i in 20"
+        :key="i"
+      >
+        <div
+          v-for="(item, j) in typeArray.slice(i*size, (i+1)*size)"
+          :key="item"
+          :style="{ color: itemColor(j+i*size) }"
+          @click="handleSelect(j+i*size)"
+          class="item-wrapper"
+        >
+          {{ item }}
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -29,9 +52,16 @@ export default {
       type: String,
     },
   },
+  data() {
+    return {
+      size: 10,
+      lineNum: this.typeArray.length / this.size,
+      isDropdown: false,
+    };
+  },
   methods: {
     handleSelect(index) {
-      this.$store.commit("search/set_area", this.typeArray[index]);
+      this.$store.commit("search/set_"+this.typeKey, this.typeArray[index]);
       this.$emit("handleSelect");
     },
     itemColor(index) {
@@ -39,6 +69,9 @@ export default {
         return "blue";
       }
       return this.$store.getters.themeColor;
+    },
+    dropdown() {
+      this.isDropdown = !this.isDropdown;
     },
   },
   computed: {
@@ -60,14 +93,27 @@ export default {
   flex-direction: row;
   padding-left: 30px;
   padding-right: 30px;
+  margin-bottom: 10px;
 }
 
-.title {
-  margin-right: 20px;
-}
 
 .item-wrapper {
   margin-left: 40px;
   cursor: pointer;
+}
+
+.icon{
+  margin-left: 30px;
+}
+
+.title,
+.first-line,
+.dropdown-line {
+  display: flex;
+  writing-mode:horizontal-tb;
+}
+
+.dropdown-line{
+  line-height:29px;
 }
 </style>

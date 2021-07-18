@@ -8,9 +8,15 @@
         :initalWords="initalWords"
       />
     </div>
-
+      <Tags></Tags>
     <div class="content-wrapper">
       <el-card class="select-bar-wrapper" shadow="never">
+        <SelectBar
+          typeTitle="地区"
+          :typeArray="typeArray.areaArray"
+          typeKey="area"
+          @handleSelect="search"
+        />
         <SelectBar
           typeTitle="地区"
           :typeArray="typeArray.areaArray"
@@ -24,7 +30,6 @@
           @handleSelect="search"
         /> -->
       </el-card>
-
       <div class="result-wrapper">
         <SearchCard
           v-for="item in resultList"
@@ -54,18 +59,44 @@ import SearchBar from "@/components/SearchBar";
 import SearchCard from "@/components/SearchCard";
 import SelectBar from "@/components/SelectBar";
 import SearchProvider from "@/api/request/search";
+import Tags from "@/components/Tags";
 import Logo from "@/components/Logo";
 
 export default {
   name: "Search",
-  components: { SearchBar, SelectBar, SearchCard, Logo },
+  components: { SearchBar, SelectBar, SearchCard, Logo, Tags },
   created() {
     this.search();
   },
   data() {
     return {
       typeArray: {
-        areaArray: ["北京", "上海"],
+        areaArray: [
+          "北京",
+          "天津",
+          "南京",
+          "地府",
+          "天堂",
+          "浙江大学",
+          "北京",
+          "天津",
+          "南京",
+          "地府",
+          "天堂",
+          "浙江大学",
+          "北京",
+          "天津",
+          "南京",
+          "地府",
+          "天堂",
+          "浙江大学",
+          "北京",
+          "天津",
+          "南京",
+          "地府",
+          "天堂",
+          "ling",
+        ],
       },
       resultList: [],
       resultCount: 0,
