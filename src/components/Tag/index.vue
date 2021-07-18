@@ -37,7 +37,7 @@
         <i class="el-icon-s-promotion" id="summary">景点地图</i>
 
         <div class="description-wrapper">
-          <p id="description">{{ description }}</p>
+          <Bmap />
         </div>
       </div>
     </div>
@@ -45,7 +45,6 @@
       <hr />
       <div id="information">
         <Informationtab />
-
       </div>
       <br />
 
@@ -68,6 +67,7 @@
 import Carouselfig from "@/components/Carouselfig";
 import Table from "@/components/Table";
 import Informationtab from "@/components/Informationtab";
+import Bmap from "@/components/Map";
 
 
 export default {
@@ -96,6 +96,7 @@ export default {
     Carouselfig,
     Table,
     Informationtab,
+    Bmap,
   },
   mounted() {
     this.loadScript();

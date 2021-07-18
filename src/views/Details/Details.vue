@@ -75,13 +75,6 @@ export default {
 </script>
 
 <style>
-.el-header {
-  background-color: white;
-  color: #333;
-  text-align: center;
-  line-height: 20 px;
-  height: 20px;
-}
 
 .el-footer {
   background-color: rgb(236, 241, 236);
@@ -94,12 +87,7 @@ export default {
   width: 80%;
 }
 
-.el-aside {
-  background-color: #d3dce6;
-  color: #333;
-  text-align: center;
-  line-height: 200px;
-}
+
 
 .el-main {
   background-color: white;
