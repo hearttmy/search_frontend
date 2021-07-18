@@ -13,7 +13,10 @@ export default {
   },
   methods: {},
   data() {
-    return {};
+    return {
+      a: 1,
+      selected: -1,
+    };
   },
 };
 </script>
