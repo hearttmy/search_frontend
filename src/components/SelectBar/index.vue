@@ -54,8 +54,7 @@ export default {
   },
   data() {
     return {
-      size: 10,
-      lineNum: this.typeArray.length / this.size,
+      size: 11,
       isDropdown: false,
     };
   },
@@ -98,22 +97,20 @@ export default {
 
 
 .item-wrapper {
-  margin-left: 40px;
+  width: 70px;
   cursor: pointer;
+  text-align: center;
 }
 
 .icon{
-  margin-left: 30px;
+  position: absolute;
+  right: 300px;
 }
 
 .title,
 .first-line,
 .dropdown-line {
   display: flex;
-  writing-mode:horizontal-tb;
-}
-
-.dropdown-line{
-  line-height:29px;
+  line-height:30px;
 }
 </style>
