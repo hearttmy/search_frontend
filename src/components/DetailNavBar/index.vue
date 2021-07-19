@@ -11,7 +11,7 @@
         <i class="el-icon-tickets"></i>数据统计
       </el-menu-item>
       <el-menu-item :index="'/detail/' + item_id + '/recommend'">
-        <i class="el-icon-star-off"></i>相关推荐
+        <i class="el-icon-star-off"></i>购票与推荐
       </el-menu-item>
     </el-menu>
   </div>

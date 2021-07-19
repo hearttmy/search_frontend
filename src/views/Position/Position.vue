@@ -2,10 +2,10 @@
   <div>
     <div class="title"><i class="el-icon-map-location" /> 地图定位</div>
     <div id="container"></div>
-    <div class="traffic" v-if="traffics">
+    <div class="traffic" v-if="item.traffic.length">
       <div class="title"><i class="el-icon-map-location" /> 交通路线</div>
-      <div class="content" v-for="traffic in traffics" :key="traffic">
-        {{ traffic }}
+      <div class="content" v-for="_traffic in item.traffic" :key="_traffic">
+        {{ _traffic }}
       </div>
     </div>
   </div>
@@ -41,15 +41,7 @@ export default {
       map.openInfoWindow(infoWindow, point);
     },
   },
-  computed: {
-    traffics() {
-      if (!this.item.traffic) {
-        return false;
-      }
-      const result = this.item.traffic.split(/\s+/);
-      return result;
-    },
-  },
+  computed: {},
 };
 </script>
 <style scoped>

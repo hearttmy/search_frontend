@@ -42,6 +42,14 @@ const routes = [
           title: "相关推荐",
         },
       },
+      {
+        path: "statistics",
+        name: "statistics",
+        component: () => import("@/views/Statistics/Statistics"),
+        meta: {
+          title: "数据统计",
+        },
+      },
     ],
   },
 ];

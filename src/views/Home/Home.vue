@@ -1,7 +1,6 @@
 <template>
   <div class="home">
     <img class="logo" src="~@/assets/img/giligili_white.png" />
-
     <div class="wrapper">
       <SearchBar />
       <el-card v-if="isSearch">...</el-card>

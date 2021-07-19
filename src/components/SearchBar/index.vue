@@ -39,7 +39,10 @@ export default {
   },
   methods: {
     searchHandler() {
-      this.$store.commit("search/set_word", this.searchWords);
+      this.$store.commit("search/set_search", {
+        key: "word",
+        value: this.searchWords,
+      });
       if (this.$route.path !== "/search") this.$router.push("/search");
     },
   },

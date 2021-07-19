@@ -2,12 +2,12 @@
   <div class="tags-container">
     <el-tag
       class="tag"
-      v-show="$store.state.search[type]!=''"
+      v-show="$store.state.search[type] != ''"
       v-for="type in types"
       :key="type"
       closable
       type="success"
-      hit="true"
+      :hit="true"
       @close="handleClose(type)"
     >
       {{ $store.state.search[type] }}
@@ -20,12 +20,12 @@ export default {
   name: "Tags",
   data() {
     return {
-      types: ["word", "area", "sort"],
+      types: ["area", "sort"],
     };
   },
   methods: {
     handleClose(type) {
-      this.$store.commit("search/set_" + type, "");
+      this.$store.commit("search/set_search", { key: type, value: "" });
       this.$emit("handleClose");
     },
   },

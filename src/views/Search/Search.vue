@@ -17,12 +17,6 @@
           typeKey="area"
           @handleSelect="search"
         />
-        <SelectBar
-          typeTitle="地区"
-          :typeArray="typeArray.areaArray"
-          typeKey="area"
-          @handleSelect="search"
-        />
         <!-- <SelectBar
           class="select-bar-margin"
           typeTitle="排序"
@@ -71,32 +65,7 @@ export default {
   data() {
     return {
       typeArray: {
-        areaArray: [
-          "北京",
-          "天津",
-          "南京",
-          "地府",
-          "天堂",
-          "浙江大学",
-          "北京",
-          "天津",
-          "南京",
-          "地府",
-          "天堂",
-          "浙江大学",
-          "北京",
-          "天津",
-          "南京",
-          "地府",
-          "天堂",
-          "浙江大学",
-          "北京",
-          "天津",
-          "南京",
-          "地府",
-          "天堂",
-          "ling",
-        ],
+        areaArray: ["北京", "天津", "南京", "地府", "天堂", "浙江大学"],
       },
       resultList: [],
       resultCount: 0,

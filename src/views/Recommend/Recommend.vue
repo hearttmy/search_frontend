@@ -24,7 +24,7 @@ export default {
     };
   },
   created() {
-    this.idList = this.parseId(this.$store.state.detail.item.recommend);
+    this.idList = this.$store.state.detail.item.recommend;
     this.searchForRecommend();
   },
   methods: {
@@ -32,12 +32,6 @@ export default {
       SearchProvider.searchForRecommend(this.idList).then((res) => {
         this.resultList = res;
       });
-    },
-    parseId(id_str) {
-      if (!id_str || id_str === "") return [];
-      const id_list = id_str.split(",");
-      id_list.splice(id_list.length - 1, 1);
-      return id_list;
     },
   },
 };

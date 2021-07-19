@@ -16,6 +16,9 @@ export default {
   components: {
     TopBar,
   },
+  created() {
+    this.$store.commit("search/getSessionStorage");
+  },
 };
 </script>
 

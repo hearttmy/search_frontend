@@ -55,7 +55,10 @@ export default {
   },
   methods: {
     handleSelect(index) {
-      this.$store.commit("search/set_" + this.typeKey, this.typeArray[index]);
+      this.$store.commit("search/set_search", {
+        key: this.typeKey,
+        value: this.typeArray[index],
+      });
       this.$emit("handleSelect");
     },
     itemColor(index) {

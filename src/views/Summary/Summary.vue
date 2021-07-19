@@ -11,14 +11,27 @@
       </div>
     </div>
     <div class="wrapper">
-      <div class="title"><i class="el-icon-time" />小贴士</div>
+      <div class="title"><i class="el-icon-edit-outline" /> 入园公告</div>
       <div class="content-card">
-        <div v-for="tip in tips" :key="tip">{{ tip }}</div>
+        <div
+          v-for="tip in item.tips"
+          :key="tip"
+          :style="{ 'margin-top': '20px' }"
+        >
+          {{ tip }}
+        </div>
       </div>
     </div>
     <div class="wrapper">
-      <div class="title"><i class="el-icon-menu" /> 热门评论</div>
-      <div class="content">{{ item.comment }}</div>
+      <div class="title"><i class="el-icon-picture-outline" /> 图片展示</div>
+      <div
+        class="pic-content"
+        v-for="pic in item.pic_url"
+        :key="pic"
+        v-show="pic !== ''"
+      >
+        <img class="pic" :src="'https://' + pic" />
+      </div>
     </div>
   </div>
 </template>
@@ -42,13 +55,6 @@ export default {
       const timeList = this.item.open_time.split("\r\n");
       return timeList;
     },
-    tips() {
-      if (!this.item.tips) {
-        return [];
-      }
-      const tipList = this.item.tips.split("\n");
-      return tipList;
-    },
   },
 };
 </script>
@@ -68,12 +74,24 @@ export default {
 }
 
 .content-card {
-  padding: 15px 20px;
+  padding: 20px;
+  padding-top: 0px;
   margin-left: 10px;
   margin-top: 20px;
   font-size: 15px;
   line-height: 30px;
   color: #555;
   border: 1px solid #ddd;
+}
+
+.pic-content {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.pic {
+  width: 80%;
+  height: 80%;
 }
 </style>

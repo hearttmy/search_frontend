@@ -6,15 +6,18 @@ const state = {
 };
 
 const mutations = {
-  set_word: (state, data) => {
-    state.word = data;
+  set_search: (state, data) => {
+    state[data.key] = data.value;
+    sessionStorage.setItem("search", JSON.stringify(state));
   },
-  set_area: (state, data) => {
-    state.area = data;
+  getSessionStorage(state) {
+    if (sessionStorage.getItem("search") != null) {
+      const tmp = JSON.parse(sessionStorage.getItem("search"));
+      for (let [key, val] of Object.entries(tmp)) {
+        state[key] = val;
+      }
+    }
   },
-  set_sort: (state, data) => {
-    state.sort = data;
-  }
 };
 
 export default {
