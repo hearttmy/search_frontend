@@ -2,6 +2,7 @@ const state = {
   word: "",
   area: "",
   sort: "",
+  showHistory: false,
 };
 
 const mutations = {
