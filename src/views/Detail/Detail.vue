@@ -17,7 +17,7 @@
         </div>
         <div class="content-wrapper">
           <transition name="el-fade-in-linear">
-            <router-view></router-view>
+            <router-view v-if="detail.id"></router-view>
           </transition>
         </div>
       </div>

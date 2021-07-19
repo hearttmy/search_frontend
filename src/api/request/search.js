@@ -7,6 +7,18 @@ const SearchProvider = {
       .then((res) => res.data.count)
       .catch((err) => err);
   },
+  searchForRecommend: (payload) => {
+    const parsedPayload = {};
+    parsedPayload.query = {
+      terms: {
+        id: [...payload],
+      },
+    };
+    return request
+      .post("/_search", parsedPayload)
+      .then((res) => res.data.hits.hits)
+      .catch((err) => err);
+  },
   searchForList: (payload) => {
     // const { word } = payload;
     const parsedPayload = {};

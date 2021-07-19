@@ -66,6 +66,7 @@ export default {
     return {
       typeArray: {
         areaArray: ["北京", "上海"],
+        priceArray: [""],
       },
       resultList: [],
       resultCount: 0,

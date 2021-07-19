@@ -2,9 +2,11 @@
   <div>
     <div class="title"><i class="el-icon-map-location" /> 地图定位</div>
     <div id="container"></div>
-    <div class="traffic" v-if="traffic">
+    <div class="traffic" v-if="traffics">
       <div class="title"><i class="el-icon-map-location" /> 交通路线</div>
-      <div class="content">{{ traffic }}</div>
+      <div class="content" v-for="traffic in traffics" :key="traffic">
+        {{ traffic }}
+      </div>
     </div>
   </div>
 </template>
@@ -24,7 +26,7 @@ export default {
   methods: {
     initMap() {
       const map = new window.BMapGL.Map("container");
-      const point = new window.BMapGL.Point(116.404, 39.915);
+      const point = new window.BMapGL.Point(this.item.lon, this.item.lat);
       map.centerAndZoom(point, 15);
       map.enableScrollWheelZoom(true);
       const marker = new window.BMapGL.Marker(point);
@@ -40,11 +42,11 @@ export default {
     },
   },
   computed: {
-    traffic() {
+    traffics() {
       if (!this.item.traffic) {
         return false;
       }
-      const result = this.item.traffic.split(/\s+/)[1];
+      const result = this.item.traffic.split(/\s+/);
       return result;
     },
   },

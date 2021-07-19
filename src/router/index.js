@@ -34,6 +34,14 @@ const routes = [
           title: "交通位置",
         },
       },
+      {
+        path: "recommend",
+        name: "recommend",
+        component: () => import("@/views/Recommend/Recommend"),
+        meta: {
+          title: "相关推荐",
+        },
+      },
     ],
   },
 ];

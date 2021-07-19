@@ -1,6 +1,7 @@
 const state = {
   word: "",
   area: "",
+  price: "",
   sort: "",
 };
 

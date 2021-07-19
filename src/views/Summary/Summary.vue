@@ -11,8 +11,14 @@
       </div>
     </div>
     <div class="wrapper">
-      <div class="title"><i class="el-icon-menu" /> 特色看点</div>
-      <div class="content">{{ item.desc }}</div>
+      <div class="title"><i class="el-icon-time" />小贴士</div>
+      <div class="content-card">
+        <div v-for="tip in tips" :key="tip">{{ tip }}</div>
+      </div>
+    </div>
+    <div class="wrapper">
+      <div class="title"><i class="el-icon-menu" /> 热门评论</div>
+      <div class="content">{{ item.comment }}</div>
     </div>
   </div>
 </template>
@@ -33,8 +39,15 @@ export default {
       if (!this.item.open_time) {
         return [];
       }
-      const timeList = this.item.open_time.split("\r\n").slice(1);
+      const timeList = this.item.open_time.split("\r\n");
       return timeList;
+    },
+    tips() {
+      if (!this.item.tips) {
+        return [];
+      }
+      const tipList = this.item.tips.split("\n");
+      return tipList;
     },
   },
 };
@@ -51,6 +64,16 @@ export default {
   line-height: 30px;
 }
 .wrapper {
-  margin-top: 30px;
+  margin-top: 40px;
+}
+
+.content-card {
+  padding: 15px 20px;
+  margin-left: 10px;
+  margin-top: 20px;
+  font-size: 15px;
+  line-height: 30px;
+  color: #555;
+  border: 1px solid #ddd;
 }
 </style>
