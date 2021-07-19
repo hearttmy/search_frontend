@@ -58,12 +58,14 @@ export default {
       this.searchWords = history;
     },
     closeHistory() {
-    clearTimeout(this.timer);  //清除延迟执行 
-    this.timer = setTimeout(()=>{   //设置延迟执行
-      this.$store.state.search.showHistory = false;
-    },100);
+      clearTimeout(this.timer); //清除延迟执行
+      this.timer = setTimeout(() => {
+        //设置延迟执行
+        this.$store.state.search.showHistory = false;
+      }, 100);
     },
     searchHandler() {
+      this.closeHistory();
       this.$store.commit("search/set_word", this.searchWords);
       this.addHistory(this.searchWords);
       if (this.$route.path !== "/search") this.$router.push("/search");

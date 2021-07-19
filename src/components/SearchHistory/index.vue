@@ -36,6 +36,7 @@ export default {
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   padding: 12px 16px;
   z-index: 10;
+  border-radius: 10px;
 }
 
 .wrapper{
