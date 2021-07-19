@@ -16,17 +16,12 @@
           <i class="el-icon-arrow-down el-icon--right"></i>
         </span>
       </div>
-      <div
-        class="dropdown-line"
-        v-show="isDropdown"
-        v-for="i in 20"
-        :key="i"
-      >
+      <div class="dropdown-line" v-show="isDropdown" v-for="i in 20" :key="i">
         <div
-          v-for="(item, j) in typeArray.slice(i*size, (i+1)*size)"
+          v-for="(item, j) in typeArray.slice(i * size, (i + 1) * size)"
           :key="item"
-          :style="{ color: itemColor(j+i*size) }"
-          @click="handleSelect(j+i*size)"
+          :style="{ color: itemColor(j + i * size) }"
+          @click="handleSelect(j + i * size)"
           class="item-wrapper"
         >
           {{ item }}
@@ -60,7 +55,7 @@ export default {
   },
   methods: {
     handleSelect(index) {
-      this.$store.commit("search/set_"+this.typeKey, this.typeArray[index]);
+      this.$store.commit("search/set_" + this.typeKey, this.typeArray[index]);
       this.$emit("handleSelect");
     },
     itemColor(index) {
@@ -95,14 +90,13 @@ export default {
   margin-bottom: 10px;
 }
 
-
 .item-wrapper {
   width: 70px;
   cursor: pointer;
   text-align: center;
 }
 
-.icon{
+.icon {
   position: absolute;
   right: 300px;
 }
@@ -111,6 +105,6 @@ export default {
 .first-line,
 .dropdown-line {
   display: flex;
-  line-height:30px;
+  line-height: 30px;
 }
 </style>
