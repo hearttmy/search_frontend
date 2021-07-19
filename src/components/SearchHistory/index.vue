@@ -1,5 +1,5 @@
 <template>
-  <div class="container" v-show="$store.state.search.showHistory">
+  <div class="container" v-show="$store.state.search.showHistory&&historyList.length>0">
     <div class="wrapper">
       <span class="tip">搜索记录</span>
       <i class="icon el-icon-delete-solid" @click="deleteHistory"></i>
