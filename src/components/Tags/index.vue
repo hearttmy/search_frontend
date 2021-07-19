@@ -2,7 +2,7 @@
   <div class="tags-container">
     <el-tag
       class="tag"
-      v-show="$store.state.search[type]!=''"
+      v-show="$store.state.search[type] != ''"
       v-for="type in types"
       :key="type"
       closable
@@ -20,7 +20,7 @@ export default {
   name: "Tags",
   data() {
     return {
-      types: ["word", "area", "sort"],
+      types: ["area", "sort"],
     };
   },
   methods: {
