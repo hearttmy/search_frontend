@@ -131,6 +131,7 @@ export default {
 .content-wrapper {
   width: 1000px;
   margin-top: 50px;
+  min-height: 380px;
   display: flex;
   flex-direction: column;
   align-items: stretch;

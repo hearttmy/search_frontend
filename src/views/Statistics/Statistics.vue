@@ -24,11 +24,6 @@
         <div id="commentPie" class="pie" />
       </div>
     </div>
-
-    <div class="wrapper">
-      <div class="title"><i class="el-icon-menu" /> 热门评论</div>
-      <div class="content">{{ item.comment }}</div>
-    </div>
   </div>
 </template>
 

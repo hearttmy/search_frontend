@@ -13,11 +13,7 @@
     <div class="wrapper">
       <div class="title"><i class="el-icon-edit-outline" /> 入园公告</div>
       <div class="content-card">
-        <div
-          v-for="tip in item.tips"
-          :key="tip"
-          :style="{ 'margin-top': '20px' }"
-        >
+        <div v-for="tip in tips" :key="tip" :style="{ 'margin-top': '20px' }">
           {{ tip }}
         </div>
       </div>
@@ -52,8 +48,15 @@ export default {
       if (!this.item.open_time) {
         return [];
       }
-      const timeList = this.item.open_time.split("\r\n");
+      const timeList = this.item.open_time.split("\n");
       return timeList;
+    },
+    tips() {
+      if (!this.item.tips[0]) {
+        return [];
+      }
+      const tipList = this.item.tips[0].split("\n");
+      return tipList;
     },
   },
 };

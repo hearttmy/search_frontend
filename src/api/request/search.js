@@ -10,7 +10,6 @@ const SearchProvider = {
           matchObj["sight"] = val;
           continue;
         }
-        console.log(key);
         matchObj[key] = val;
       }
     }
@@ -50,7 +49,6 @@ const SearchProvider = {
           matchObj["sight"] = val;
           continue;
         }
-        console.log(key);
         matchObj[key] = val;
       }
     }

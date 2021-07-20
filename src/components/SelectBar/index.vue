@@ -63,9 +63,9 @@ export default {
     },
     itemColor(index) {
       if (index === this.selectedIndex) {
-        return "blue";
+        return "#1cafc5";
       }
-      return this.$store.getters.themeColor;
+      return "#888";
     },
     dropdown() {
       this.isDropdown = !this.isDropdown;
