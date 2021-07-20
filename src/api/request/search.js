@@ -1,9 +1,31 @@
 import request from "../request";
 
 const SearchProvider = {
-  searchCount: () => {
+  searchCount: (payload) => {
+    const parsedPayload = {};
+    const matchObj = {};
+    for (let [key, val] of Object.entries(payload)) {
+      if (val !== "" && key !== "size" && key !== "from") {
+        if (key === "word") {
+          matchObj["sight"] = val;
+          continue;
+        }
+        console.log(key);
+        matchObj[key] = val;
+      }
+    }
+    if (Object.keys(matchObj).length === 0) {
+      parsedPayload.query = {
+        match_all: {},
+      };
+    } else {
+      parsedPayload.query = {
+        match: matchObj,
+      };
+    }
+    console.log(parsedPayload);
     return request
-      .get("/_count")
+      .post("/_count", parsedPayload)
       .then((res) => res.data.count)
       .catch((err) => err);
   },
@@ -20,11 +42,28 @@ const SearchProvider = {
       .catch((err) => err);
   },
   searchForList: (payload) => {
-    // const { word } = payload;
     const parsedPayload = {};
-    parsedPayload.query = {
-      match_all: {},
-    };
+    const matchObj = {};
+    for (let [key, val] of Object.entries(payload)) {
+      if (val !== "" && key !== "size" && key !== "from") {
+        if (key === "word") {
+          matchObj["sight"] = val;
+          continue;
+        }
+        console.log(key);
+        matchObj[key] = val;
+      }
+    }
+    if (Object.keys(matchObj).length === 0) {
+      parsedPayload.query = {
+        match_all: {},
+      };
+    } else {
+      parsedPayload.query = {
+        match: matchObj,
+      };
+    }
+
     parsedPayload.size = payload.size;
     parsedPayload.from = payload.from;
     return request

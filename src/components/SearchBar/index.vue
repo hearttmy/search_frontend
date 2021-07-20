@@ -43,7 +43,11 @@ export default {
         key: "word",
         value: this.searchWords,
       });
-      if (this.$route.path !== "/search") this.$router.push("/search");
+      if (this.$route.path !== "/search") {
+        this.$router.push("/search");
+      } else {
+        this.$emit("searchCallback");
+      }
     },
   },
 };

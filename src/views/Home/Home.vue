@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <img class="logo" src="~@/assets/img/giligili_white.png" />
+    <img class="logo" src="~@/assets/img/home_logo.png" />
     <div class="wrapper">
       <SearchBar />
       <el-card v-if="isSearch">...</el-card>
@@ -34,10 +34,11 @@ export default {
 }
 
 .logo {
-  width: 300px;
+  width: 500px;
   margin-top: 150px;
 }
 .wrapper {
+  margin-top: 50px;
   width: 540px;
   background-color: transparent;
 }

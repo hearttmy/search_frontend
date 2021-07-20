@@ -6,9 +6,10 @@
         mainColor="dark"
         :style="{ flex: 1 }"
         :initalWords="initalWords"
+        @searchCallback="search"
       />
     </div>
-    <Tags></Tags>
+    <Tags @handleClose="search"></Tags>
     <div class="content-wrapper">
       <el-card class="select-bar-wrapper" shadow="never">
         <SelectBar
@@ -24,14 +25,14 @@
           @handleSelect="search"
         /> -->
       </el-card>
-      <div class="result-wrapper">
+      <div class="result-wrapper" v-if="resultList.length" v-loading="loading">
         <SearchCard
           v-for="item in resultList"
           :item="item._source"
           :key="item._id"
         />
       </div>
-      <div class="page">
+      <div class="page" v-if="resultList.length">
         <el-pagination
           background
           class="page"
@@ -64,6 +65,7 @@ export default {
   },
   data() {
     return {
+      loading: "false",
       typeArray: {
         areaArray: ["北京", "天津", "南京", "地府", "天堂", "浙江大学"],
       },
@@ -79,19 +81,24 @@ export default {
   },
   methods: {
     handleCurrentChange() {
+      this.loading = true;
       this.payload.from = this.payload.size * (this.currentPage - 1);
       SearchProvider.searchForList(this.payload).then((res) => {
         this.resultList = res;
+        this.loading = false;
       });
     },
     search() {
-      this.payload = { ...this.$store.state.search, ...this.payload };
+      this.loading = true;
+      this.payload = { ...this.payload, ...this.$store.state.search };
       this.initalWords = this.payload["word"] ? this.payload["word"] : "";
-      SearchProvider.searchCount().then((res) => {
+
+      SearchProvider.searchCount(this.payload).then((res) => {
         this.resultCount = res;
       });
       SearchProvider.searchForList(this.payload).then((res) => {
         this.resultList = res;
+        this.loading = false;
       });
     },
     toHomePage() {
@@ -137,7 +144,7 @@ export default {
 }
 
 .result-wrapper {
-  margin-top: 50px;
+  margin-top: 20px;
 }
 .page {
   margin-top: 10px;
