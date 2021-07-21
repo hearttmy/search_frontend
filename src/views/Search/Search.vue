@@ -30,6 +30,12 @@
           typeKey="price"
           @handleSelect="search"
         />
+        <SelectBar
+          typeTitle="排序"
+          :typeArray="typeArray.sortArray"
+          typeKey="sort"
+          @handleSelect="search"
+        />
       </el-card>
       <div class="result-wrapper" v-if="resultList.length" v-loading="loading">
         <SearchCard
@@ -104,14 +110,7 @@ export default {
         ],
         levelArray: ["5A级", "4A级", "3A级"],
         priceArray: ["50以下", "50~100", "100~200", "200以上"],
-        sortArray: [
-          "价格降序",
-          "价格升序",
-          "销量降序",
-          "销量升序",
-          "评分降序",
-          "评分升序",
-        ],
+        sortArray: ["价格⬇", "价格⬆", "销量⬇", "销量⬆"],
       },
       resultList: [],
       resultCount: 0,

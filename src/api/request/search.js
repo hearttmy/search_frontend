@@ -30,6 +30,8 @@ const SearchProvider = {
               break;
           }
           continue;
+        } else if (key === "sort") {
+          continue;
         }
 
         matchList.push({ match: { [key]: val } });
@@ -83,6 +85,7 @@ const SearchProvider = {
     const parsedPayload = {};
     const matchList = [];
     const priceRange = [];
+    const sort = {};
     for (let [key, val] of Object.entries(payload)) {
       if (val !== "" && key !== "size" && key !== "from") {
         if (key === "word") {
@@ -109,6 +112,20 @@ const SearchProvider = {
           }
           continue;
         } else if (key === "sort") {
+          switch (val) {
+            case "价格⬇":
+              sort.price = { order: "desc" };
+              break;
+            case "价格⬆":
+              sort.price = { order: "asc" };
+              break;
+            case "销量⬇":
+              sort.count = { order: "desc" };
+              break;
+            case "销量⬆":
+              sort.count = { order: "asc" };
+              break;
+          }
           continue;
         }
         matchList.push({ match: { [key]: val } });
@@ -143,7 +160,7 @@ const SearchProvider = {
     }
 
     if (payload.sort) {
-      parsedPayload.sort = payload.sort;
+      parsedPayload.sort = sort;
     }
     parsedPayload.size = payload.size;
     parsedPayload.from = payload.from;
