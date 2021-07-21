@@ -18,12 +18,18 @@
           typeKey="area"
           @handleSelect="search"
         />
-        <!-- <SelectBar
-          class="select-bar-margin"
-          typeTitle="排序"
-          typeKey="sort"
+        <SelectBar
+          typeTitle="景区A级"
+          :typeArray="typeArray.levelArray"
+          typeKey="level"
           @handleSelect="search"
-        /> -->
+        />
+        <SelectBar
+          typeTitle="票价"
+          :typeArray="typeArray.priceArray"
+          typeKey="price"
+          @handleSelect="search"
+        />
       </el-card>
       <div class="result-wrapper" v-if="resultList.length" v-loading="loading">
         <SearchCard
@@ -32,6 +38,7 @@
           :key="item._id"
         />
       </div>
+      <div v-else class="search-failure">没有搜索结果</div>
       <div class="page" v-if="resultList.length">
         <el-pagination
           background
@@ -67,7 +74,9 @@ export default {
     return {
       loading: "false",
       typeArray: {
-        areaArray: ["北京", "天津", "南京", "地府", "天堂", "浙江大学"],
+        areaArray: ["山东", "天津", "南京", "浙江", "北京"],
+        levelArray: ["5A级", "4A级", "3A级"],
+        priceArray: ["50以下", "50~100", "100~200", "200以上"],
       },
       resultList: [],
       resultCount: 0,
@@ -131,7 +140,7 @@ export default {
 .content-wrapper {
   width: 1000px;
   margin-top: 50px;
-  min-height: 380px;
+  min-height: 400px;
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -151,6 +160,13 @@ export default {
   margin-top: 10px;
   display: flex;
   flex-direction: row;
+  justify-content: center;
+}
+
+.search-failure {
+  flex: 1;
+  display: flex;
+  align-items: center;
   justify-content: center;
 }
 </style>

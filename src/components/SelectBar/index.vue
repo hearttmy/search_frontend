@@ -94,7 +94,10 @@ export default {
 }
 
 .item-wrapper {
-  width: 70px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 90px;
   cursor: pointer;
   text-align: center;
 }

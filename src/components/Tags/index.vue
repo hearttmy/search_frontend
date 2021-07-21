@@ -20,7 +20,7 @@ export default {
   name: "Tags",
   data() {
     return {
-      types: ["area", "sort"],
+      types: ["area", "sort", "price", "level"],
     };
   },
   methods: {

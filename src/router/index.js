@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import Home from "../views/Home/Home.vue";
 import Search from "../views/Search/Search.vue";
 import Detail from "../views/Detail/Detail.vue";
+import store from "@/store"
 Vue.use(VueRouter);
 
 const routes = [
@@ -65,6 +66,9 @@ router.afterEach((to, from) => {
   const toPath = to.path.split("/")[1];
   if (toPath !== fromPath) {
     window.scrollTo(0, 0);
+  }
+  if (from.path === "/" && to.path === "/search") {
+    store.commit("search/reset_type");
   }
 });
 
