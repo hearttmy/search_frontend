@@ -24,21 +24,32 @@
         <div id="commentPie" class="pie" />
       </div>
     </div>
+    <div v-if="this.stat.wordcloud_path" class="wrapper">
+      <div class="title"><i class="el-icon-menu" /> 评论词云</div>
+      <img
+        class="cloud-wrapper"
+        :src="require(`../../${this.stat.wordcloud_path}`)"
+      />
+    </div>
   </div>
 </template>
 
 <script>
+import SearchProvider from "@/api/request/search";
+
 export default {
   name: "Statistics",
   data() {
     return {
       item: {},
       colors: ["#99A9BF", "#F7BA2A", "#FF9900"],
+      stat: {},
       chart: "",
     };
   },
   created() {
     this.item = this.$store.state.detail.item;
+    this.searchStat({ id: this.item.id });
   },
   mounted() {
     if (this.chart === "") {
@@ -46,6 +57,12 @@ export default {
     }
   },
   methods: {
+    searchStat(payload) {
+      SearchProvider.searchStat(payload).then((res) => {
+        res.wordcloud_path = res.wordcloud_path.replace("\\", "/");
+        this.stat = res;
+      });
+    },
     drawPie(id) {
       this.chart = this.$echarts.init(document.getElementById(id));
       this.chart.setOption({
@@ -162,6 +179,11 @@ export default {
 
 .pie {
   margin-left: 100px;
+  width: 400px;
+}
+
+.cloud-wrapper {
+  margin-top: 30px;
   width: 400px;
 }
 </style>

@@ -3,7 +3,7 @@ import VueRouter from "vue-router";
 import Home from "../views/Home/Home.vue";
 import Search from "../views/Search/Search.vue";
 import Detail from "../views/Detail/Detail.vue";
-import store from "@/store"
+import store from "@/store";
 Vue.use(VueRouter);
 
 const routes = [

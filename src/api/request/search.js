@@ -143,7 +143,7 @@ const SearchProvider = {
         },
       };
     }
-    console.log(parsedPayload)
+    console.log(parsedPayload);
     parsedPayload.size = payload.size;
     parsedPayload.from = payload.from;
     return request
@@ -166,10 +166,15 @@ const SearchProvider = {
       .catch((err) => err);
   },
   searchStat: (payload) => {
-    const parsedPayload = { ...payload };
+    const parsedPayload = {};
+    parsedPayload.query = {
+      match: {
+        id: payload.id,
+      },
+    };
     return request
       .post("/qunar_stat/_search", parsedPayload)
-      .then((res) => res.data.hits.hits)
+      .then((res) => res.data.hits.hits[0]._source)
       .catch((err) => err);
   },
 };
