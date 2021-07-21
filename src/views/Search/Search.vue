@@ -1,5 +1,5 @@
 <template>
-  <div class="search-wrapper">
+  <div class="search-wrapper" id="search-page">
     <div class="top-wrapper">
       <Logo class="logo-wrapper" />
       <SearchBar
@@ -19,7 +19,7 @@
           @handleSelect="search"
         />
         <SelectBar
-          typeTitle="景区A级"
+          typeTitle="A级"
           :typeArray="typeArray.levelArray"
           typeKey="level"
           @handleSelect="search"
@@ -74,9 +74,44 @@ export default {
     return {
       loading: "false",
       typeArray: {
-        areaArray: ["山东", "天津", "南京", "浙江", "北京"],
+        areaArray: [
+          "北京",
+          "天津",
+          "河北",
+          "山西",
+          "辽宁",
+          "上海",
+          "江苏",
+          "浙江",
+          "安徽",
+          "江西",
+          "山东",
+          "河南",
+          "湖北",
+          "湖南",
+          "广东",
+          "广西",
+          "重庆",
+          "四川",
+          "贵州",
+          "陕西",
+          "甘肃",
+          "内蒙古",
+          "宁夏",
+          "西藏",
+          "香港",
+          "澳门",
+        ],
         levelArray: ["5A级", "4A级", "3A级"],
         priceArray: ["50以下", "50~100", "100~200", "200以上"],
+        sortArray: [
+          "价格降序",
+          "价格升序",
+          "销量降序",
+          "销量升序",
+          "评分降序",
+          "评分升序",
+        ],
       },
       resultList: [],
       resultCount: 0,
@@ -119,6 +154,7 @@ export default {
 
 <style scoped>
 .search-wrapper {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -139,7 +175,7 @@ export default {
 
 .content-wrapper {
   width: 1000px;
-  margin-top: 50px;
+  margin-top: 20px;
   min-height: 400px;
   display: flex;
   flex-direction: column;

@@ -13,7 +13,7 @@ const mutations = {
   },
   reset_type: (state) => {
     for (let key of Object.keys(state)) {
-      if (key != "word") {
+      if (key !== "word" && key !== "area") {
         state[key] = "";
       }
     }

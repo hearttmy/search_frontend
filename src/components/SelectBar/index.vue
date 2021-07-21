@@ -7,26 +7,40 @@
           v-for="(item, i) in typeArray.slice(0, size)"
           :key="item"
           :style="{ color: itemColor(i) }"
-          @click="handleSelect(i)"
           class="item-wrapper"
         >
-          {{ item }}
+          <div @click="handleSelect(i)" class="item">{{ item }}</div>
         </div>
-        <span class="icon" v-show="typeArray.length > size" @click="dropdown">
+        <span
+          class="icon"
+          v-if="!isDropdown"
+          v-show="typeArray.length > size"
+          @click="dropdown"
+        >
+          <i class="el-icon-arrow-right el-icon--right icon-color"></i>
+        </span>
+        <span
+          class="icon"
+          v-else
+          v-show="typeArray.length > size"
+          @click="dropdown"
+        >
           <i class="el-icon-arrow-down el-icon--right"></i>
         </span>
       </div>
-      <div class="dropdown-line" v-show="isDropdown" v-for="i in 20" :key="i">
-        <div
-          v-for="(item, j) in typeArray.slice(i * size, (i + 1) * size)"
-          :key="item"
-          :style="{ color: itemColor(j + i * size) }"
-          @click="handleSelect(j + i * size)"
-          class="item-wrapper"
-        >
-          {{ item }}
+      <transition-group name="el-fade-in-linear">
+        <div class="dropdown-line" v-show="isDropdown" v-for="i in 20" :key="i">
+          <div
+            v-for="(item, j) in typeArray.slice(i * size, (i + 1) * size)"
+            :key="item"
+            :style="{ color: itemColor(j + i * size) }"
+            @click="handleSelect(j + i * size)"
+            class="item-wrapper"
+          >
+            {{ item }}
+          </div>
         </div>
-      </div>
+      </transition-group>
     </div>
   </div>
 </template>
@@ -49,7 +63,7 @@ export default {
   },
   data() {
     return {
-      size: 11,
+      size: 8,
       isDropdown: false,
     };
   },
@@ -96,15 +110,27 @@ export default {
 .item-wrapper {
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: flex-start;
   width: 90px;
-  cursor: pointer;
   text-align: center;
+}
+
+.item {
+  cursor: pointer;
 }
 
 .icon {
   position: absolute;
-  right: 300px;
+  cursor: pointer;
+  right: 270px;
+}
+
+.icon-color {
+  color: #888;
+}
+
+.title {
+  width: 60px;
 }
 
 .title,

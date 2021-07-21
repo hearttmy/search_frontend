@@ -7,7 +7,7 @@
     >
       <div class="card-wrapper">
         <div class="back-wrapper" @click="handleBack">
-          <i class="el-icon-back" />返回搜索结果
+          <i class="el-icon-back" /><span class="back-text">返回搜索结果</span>
         </div>
         <div class="cover-wrapper">
           <DetailCover :item="detail" />
@@ -15,9 +15,9 @@
         <div class="tap-wrapper">
           <DetailNavBar />
         </div>
-        <div class="content-wrapper">
+        <div class="content-wrapper" v-if="detail.id">
           <transition name="el-fade-in-linear">
-            <router-view v-if="detail.id"></router-view>
+            <router-view></router-view>
           </transition>
         </div>
       </div>
@@ -51,7 +51,6 @@ export default {
       SearchProvider.searchForDetail({ id: this.id }).then((res) => {
         this.detail = res;
         this.$store.commit("detail/set_item", this.detail);
-        console.log(this.detail);
       });
     },
     handleBack() {
@@ -92,6 +91,12 @@ export default {
   color: #1cafc5;
   font-size: 18px;
   margin-bottom: 20px;
+  display: flex;
+  align-items: flex-end;
   cursor: pointer;
+}
+.back-text {
+  font-size: 14px;
+  margin-left: 5px;
 }
 </style>

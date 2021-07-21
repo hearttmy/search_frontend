@@ -1,37 +1,22 @@
 <template>
-  <el-card :body-style="{ padding: '0px' }" :style="{ 'margin-top': '15px' }">
-    <div class="card-wrapper">
-      <img class="cover" :src="item.img_url" @click="handleClick" />
+  <el-card
+    :body-style="{ padding: '0px', 'padding-bottom': '10px' }"
+    :style="{ 'margin-top': '15px' }"
+  >
+    <div class="card-wrapper" @click="handleClick">
+      <img class="cover" :src="item.imgUrl" />
+      <div class="caption">{{ item.name }}</div>
       <div class="text-wrapper">
-        <div class="caption" @click="handleClick">{{ item.sight }}</div>
-        <div class="area-hot">
-          <div>[{{ item.area }}]</div>
-          <div class="hot">
-            评分：
-            <el-rate
-              v-model="item.score"
-              disabled
-              show-score
-              text-color="#ff9900"
-              :colors="colors"
-              class="rate"
-            />
-          </div>
+        <div class="intro">{{ item.feature }}</div>
+        <div class="price-wrapper">
+          <span class="small-font">
+            <span class="red-font">￥{{ item.qunarPrice }}</span>
+            <span> 起</span>
+          </span>
+          <span class="small-font market-price"
+            >票面价: {{ item.marketPrice }}</span
+          >
         </div>
-        <div class="address">地址：{{ item.address }}</div>
-        <div class="intro">{{ item.intro }}</div>
-      </div>
-      <div class="price-wrapper">
-        <div class="price">
-          <span class="small-font">￥</span>
-          <span>{{ price }}</span>
-          <span class="small-font">起</span>
-        </div>
-
-        <el-button class="detail-btn" @click="handleClick"
-          >查看景点>></el-button
-        >
-        <div class="count small-font">月销量：{{ item.count }}</div>
       </div>
     </div>
   </el-card>
@@ -47,18 +32,11 @@ export default {
     },
   },
   data() {
-    return {
-      colors: ["#99A9BF", "#F7BA2A", "#FF9900"],
-    };
+    return {};
   },
   methods: {
     handleClick() {
       this.$router.push(`/detail/${this.item.id}`);
-    },
-  },
-  computed: {
-    price() {
-      return parseInt(this.item.price);
     },
   },
 };
@@ -66,89 +44,51 @@ export default {
 
 <style scoped>
 .card-wrapper {
-  display: flex;
-  flex-direction: row;
-}
-.cover {
-  width: 280px;
-  height: 200px;
-}
-.text-wrapper {
+  position: relative;
   display: flex;
   flex-direction: column;
-  margin-left: 20px;
-  width: 400px;
-}
-
-.caption {
-  color: #333;
-  font-size: 28px;
-  margin-top: 20px;
-}
-.caption:hover {
   cursor: pointer;
-  color: #f80;
 }
-
-.area-hot {
-  margin-top: 15px;
-  display: flex;
-  font-size: 12px;
+.cover {
+  height: 150px;
 }
-
-.hot {
-  display: flex;
-  font-size: 12px;
-  margin-left: 10px;
-  color: #999;
-}
-
-.address {
-  margin-top: 10px;
-  font-size: 12px;
-  color: #999;
-}
-
-.intro {
-  margin-top: 10px;
-  font-size: 12px;
-  color: #999;
-}
-
-.price-wrapper {
-  flex: 1;
-  border-left: 1px dashed rgba(153, 153, 153, 0.301);
+.text-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.price {
-  color: #fc361d;
-  font-size: 30px;
-  margin-top: 30px;
+.caption {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  line-height: 30px;
+  top: 120px;
+  height: 30px;
+  color: white;
+  font-size: 11px;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.intro {
+  margin-top: 10px;
+  font-size: 12px;
+  width: 150px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  text-align: center;
+  color: #999;
+}
+.red-font {
+  color: #f80;
 }
 .small-font {
   font-size: 12px;
   color: #999;
 }
 
-.detail-btn {
-  margin-top: 10px;
-  width: 120px;
-  background-color: #1cafc5;
-  color: white;
-  font-weight: 700;
-  font-size: 14px;
-}
-.detail-btn:hover,
-.detail-btn:active,
-.detail-btn:focus {
-  background-color: #189cb1;
-  color: white;
-}
-
-.count {
-  margin-top: 10px;
+.market-price {
+  margin-left: 20px;
 }
 </style>

@@ -1,10 +1,14 @@
 <template>
   <div>
-    <div>
-      <div class="title"><i class="el-icon-menu" /> 百度指数</div>
-      <div class="content">{{ item.desc }}</div>
+    <div v-show="this.stat.baidu_search_index">
+      <div class="title"><i class="el-icon-menu" /> 百度搜索指数</div>
+      <div class="line-chart" id="baidu-search" />
     </div>
-    <div class="wrapper">
+    <div v-show="this.stat.age_index">
+      <div class="title"><i class="el-icon-menu" /> 百度人群画像</div>
+      <div class="chart-wrapper"><div class="bar-chart" id="baidu-age" /></div>
+    </div>
+    <div>
       <div class="title"><i class="el-icon-menu" /> 用户评论</div>
       <div class="comment-wrapper">
         <div class="comment">
@@ -26,10 +30,12 @@
     </div>
     <div v-if="this.stat.wordcloud_path" class="wrapper">
       <div class="title"><i class="el-icon-menu" /> 评论词云</div>
-      <img
-        class="cloud-wrapper"
-        :src="require(`../../${this.stat.wordcloud_path}`)"
-      />
+      <div class="cloud-wrapper">
+        <img
+          class="cloud-pic"
+          :src="require(`../../${this.stat.wordcloud_path}`)"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -44,28 +50,185 @@ export default {
       item: {},
       colors: ["#99A9BF", "#F7BA2A", "#FF9900"],
       stat: {},
-      chart: "",
+      pieChart: "",
+      baiduSearch: "",
+      baiduAge: "",
+      baiduMedia: "",
     };
   },
   created() {
     this.item = this.$store.state.detail.item;
-    this.searchStat({ id: this.item.id });
   },
   mounted() {
-    if (this.chart === "") {
-      this.drawPie("commentPie");
-    }
+    this.searchStat({ id: this.item.id });
+    this.drawPie("commentPie");
   },
   methods: {
     searchStat(payload) {
       SearchProvider.searchStat(payload).then((res) => {
         res.wordcloud_path = res.wordcloud_path.replace("\\", "/");
         this.stat = res;
+        if (this.stat.baidu_search_index) {
+          this.drawBaiduSearch("baidu-search");
+        }
+        if (this.stat.age_index) {
+          this.drawBaiduAge("baidu-age");
+        }
+      });
+    },
+    drawBaiduSearch(id) {
+      this.baiduSearch = this.$echarts.init(document.getElementById(id));
+      this.baiduSearch.setOption({
+        tooltip: {
+          trigger: "axis",
+        },
+        xAxis: {
+          type: "category",
+          axisTick: {
+            show: false,
+          },
+          boundaryGap: false,
+          axisLine: {
+            lineStyle: {
+              color: "rgba(12,102,173,.5)",
+              width: 2,
+            },
+          },
+          data: [
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+          ],
+        },
+        yAxis: {
+          type: "value",
+        },
+        series: [
+          {
+            type: "line",
+            symbol: "none",
+            smooth: true,
+            data: this.stat.baidu_search_index,
+            itemStyle: {
+              color: "#09b0f5",
+            },
+            areaStyle: {
+              color: this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                {
+                  offset: 0,
+                  color: "#09b0f5",
+                },
+                {
+                  offset: 1,
+                  color: "rgba(12,102,173,.5)",
+                },
+              ]),
+            },
+          },
+        ],
+      });
+    },
+    drawBaiduAge(id) {
+      const tgi = [];
+      const word_rate = [];
+      const all_rate = [];
+      for (let key of Object.keys(this.stat.age_index.tgi)) {
+        tgi.push(this.stat.age_index.tgi[key]);
+        word_rate.push(this.stat.age_index.word_rate[key]);
+        all_rate.push(this.stat.age_index.all_rate[key]);
+      }
+      this.baiduAge = this.$echarts.init(document.getElementById(id));
+      this.baiduAge.setOption({
+        title: {
+          text: "年龄分布",
+          textStyle: {
+            fontWeight: "normal",
+            fontSize: 14,
+            color: "#1cafc5",
+          },
+          x: "center",
+        },
+        tooltip: {
+          trigger: "axis",
+        },
+        grid: {
+          top: 80,
+        },
+        xAxis: {
+          type: "category",
+          axisTick: {
+            show: false,
+          },
+          axisLine: {
+            lineStyle: {
+              color: "rgba(12,102,173,.5)",
+              width: 2,
+            },
+          },
+          data: ["≤19", "20~29", "30~39", "40~49", "≥50"],
+        },
+        yAxis: [
+          {
+            type: "value",
+            axisLabel: {
+              formatter: "{value}%",
+            },
+          },
+          {
+            type: "value",
+            name: "TGI",
+            nameLocation: "end",
+            nameTextStyle: {
+              fontWeight: "bold",
+              padding: [0, 0, 0, 30],
+            },
+            splitLine: {
+              //网格线
+              show: false,
+            },
+          },
+        ],
+        legend: {
+          data: [this.item.sight, "全网分布", "TGI"],
+          top: "10%",
+        },
+        series: [
+          {
+            name: "TGI",
+            type: "line",
+            symbol: "emptyCircle",
+            data: tgi,
+            yAxisIndex: 1,
+          },
+          {
+            name: this.item.sight,
+            type: "bar",
+            data: word_rate,
+            yAxisIndex: 0,
+            color: "rgba(51,198,247)",
+          },
+          {
+            name: "全网分布",
+            type: "bar",
+            data: all_rate,
+            yAxisIndex: 0,
+            color: "rgba(0,0,0,.1)",
+          },
+        ],
       });
     },
     drawPie(id) {
-      this.chart = this.$echarts.init(document.getElementById(id));
-      this.chart.setOption({
+      this.pieChart = this.$echarts.init(document.getElementById(id));
+      this.pieChart.setOption({
         title: {
           text: "评论分布",
           textStyle: {
@@ -81,10 +244,8 @@ export default {
             radius: ["50%", "70%"], // 将0改成50%，修改圆的内径
             clockwise: false,
             label: {
-              normal: {
-                position: "outside", // 设置标签向外
-                formatter: "{b}\n{c}条 ({d}%)", // 设置标签格式
-              },
+              position: "outside", // 设置标签向外
+              formatter: "{b}\n{c}条 ({d}%)", // 设置标签格式
             },
             data: [
               { value: this.item.praise, name: "好评" },
@@ -144,7 +305,7 @@ export default {
   border: 1px solid #ddd;
 }
 .wrapper {
-  margin-top: 40px;
+  margin-top: 15px;
 }
 
 .comment-wrapper {
@@ -183,7 +344,25 @@ export default {
 }
 
 .cloud-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cloud-pic {
   margin-top: 30px;
   width: 400px;
+}
+
+.line-chart {
+  width: 860px;
+  height: 300px;
+}
+.bar-chart {
+  width: 400px;
+  height: 300px;
+}
+.chart-wrapper {
+  margin-top: 20px;
 }
 </style>

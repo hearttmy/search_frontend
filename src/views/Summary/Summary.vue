@@ -6,27 +6,42 @@
     </div>
     <div class="wrapper">
       <div class="title"><i class="el-icon-time" /> 开放时间</div>
-      <div class="content" v-for="time in open_time" :key="time" v-show="time">
+      <div
+        class="content"
+        v-for="time in open_time"
+        v-show="time !== ''"
+        :key="time"
+      >
         {{ time }}
       </div>
     </div>
     <div class="wrapper">
       <div class="title"><i class="el-icon-edit-outline" /> 入园公告</div>
       <div class="content-card">
-        <div v-for="tip in tips" :key="tip" :style="{ 'margin-top': '20px' }">
+        <div
+          v-for="tip in tips"
+          v-show="tip !== ''"
+          :key="tip"
+          :style="{ 'margin-top': '20px' }"
+        >
           {{ tip }}
         </div>
       </div>
     </div>
     <div class="wrapper">
       <div class="title"><i class="el-icon-picture-outline" /> 图片展示</div>
-      <div
-        class="pic-content"
-        v-for="pic in item.pic_url"
-        :key="pic"
-        v-show="pic !== ''"
-      >
-        <img class="pic" :src="'https://' + pic" />
+      <div class="pic-wrapper">
+        <div class="pic-content">
+          <el-carousel trigger="click" height="300px">
+            <el-carousel-item
+              v-for="pic in item.pic_url"
+              v-show="pic !== ''"
+              :key="pic"
+            >
+              <img class="pic" :src="'https://' + pic" />
+            </el-carousel-item>
+          </el-carousel>
+        </div>
       </div>
     </div>
   </div>
@@ -42,6 +57,7 @@ export default {
   },
   created() {
     this.item = this.$store.state.detail.item;
+    this.item.pic_url = this.item.pic_url.slice(0, 5);
   },
   computed: {
     open_time() {
@@ -87,14 +103,17 @@ export default {
   border: 1px solid #ddd;
 }
 
-.pic-content {
-  margin-top: 15px;
+.pic-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+.pic-content {
+  margin-top: 15px;
+  width: 600px;
+}
 .pic {
-  width: 80%;
-  height: 80%;
+  width: 100%;
+  height: 100%;
 }
 </style>

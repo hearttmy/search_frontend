@@ -108,8 +108,9 @@ const SearchProvider = {
               break;
           }
           continue;
+        } else if (key === "sort") {
+          continue;
         }
-
         matchList.push({ match: { [key]: val } });
       }
     }
@@ -133,9 +134,6 @@ const SearchProvider = {
           ],
         },
       };
-      parsedPayload.sort = {
-        price: { order: "asc" },
-      };
     } else {
       parsedPayload.query = {
         bool: {
@@ -143,9 +141,13 @@ const SearchProvider = {
         },
       };
     }
-    console.log(parsedPayload);
+
+    if (payload.sort) {
+      parsedPayload.sort = payload.sort;
+    }
     parsedPayload.size = payload.size;
     parsedPayload.from = payload.from;
+    console.log(parsedPayload);
     return request
       .post("/qunar/_search", parsedPayload)
       .then((res) => res.data.hits.hits)
