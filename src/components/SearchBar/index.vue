@@ -5,6 +5,7 @@
       v-model="searchWords"
       @keyup.enter.native="searchHandler"
       @focus="$store.state.search.showHistory = true"
+      @input="$store.state.search.showHistory = true"
       @blur="closeHistory"
     >
       <i
