@@ -6,7 +6,10 @@
     </div>
     <div v-show="this.stat.age_index">
       <div class="title"><i class="el-icon-menu" /> 百度人群画像</div>
-      <div class="chart-wrapper"><div class="bar-chart" id="baidu-age" /></div>
+      <div class="chart-wrapper">
+        <div class="bar-chart" id="baidu-age" />
+        <div class="bar-chart gender-chart" id="baidu-gender"></div>
+      </div>
     </div>
     <div>
       <div class="title"><i class="el-icon-menu" /> 用户评论</div>
@@ -68,11 +71,27 @@ export default {
       SearchProvider.searchStat(payload).then((res) => {
         res.wordcloud_path = res.wordcloud_path.replace("\\", "/");
         this.stat = res;
+        console.log(this.stat.baidu_search_index);
         if (this.stat.baidu_search_index) {
           this.drawBaiduSearch("baidu-search");
         }
         if (this.stat.age_index) {
-          this.drawBaiduAge("baidu-age");
+          this.drawBaiduAge(
+            "baidu-age",
+            this.stat.age_index,
+            "年龄分布",
+            ["≤19", "20~29", "30~39", "40~49", "≥50"],
+            "auto"
+          );
+        }
+        if (this.stat.gender_index) {
+          this.drawBaiduAge(
+            "baidu-gender",
+            this.stat.gender_index,
+            "性别分布",
+            ["男", "女"],
+            30
+          );
         }
       });
     },
@@ -137,19 +156,19 @@ export default {
         ],
       });
     },
-    drawBaiduAge(id) {
+    drawBaiduAge(id, obj, title, xAxisData, barWidth) {
       const tgi = [];
       const word_rate = [];
       const all_rate = [];
-      for (let key of Object.keys(this.stat.age_index.tgi)) {
-        tgi.push(this.stat.age_index.tgi[key]);
-        word_rate.push(this.stat.age_index.word_rate[key]);
-        all_rate.push(this.stat.age_index.all_rate[key]);
+      for (let key of Object.keys(obj.tgi)) {
+        tgi.push(obj.tgi[key]);
+        word_rate.push(obj.word_rate[key]);
+        all_rate.push(obj.all_rate[key]);
       }
       this.baiduAge = this.$echarts.init(document.getElementById(id));
       this.baiduAge.setOption({
         title: {
-          text: "年龄分布",
+          text: title,
           textStyle: {
             fontWeight: "normal",
             fontSize: 14,
@@ -174,7 +193,7 @@ export default {
               width: 2,
             },
           },
-          data: ["≤19", "20~29", "30~39", "40~49", "≥50"],
+          data: xAxisData,
         },
         yAxis: [
           {
@@ -212,6 +231,7 @@ export default {
           {
             name: this.item.sight,
             type: "bar",
+            barWidth: barWidth,
             data: word_rate,
             yAxisIndex: 0,
             color: "rgba(51,198,247)",
@@ -219,6 +239,7 @@ export default {
           {
             name: "全网分布",
             type: "bar",
+            barWidth: barWidth,
             data: all_rate,
             yAxisIndex: 0,
             color: "rgba(0,0,0,.1)",
@@ -362,7 +383,12 @@ export default {
   width: 400px;
   height: 300px;
 }
+.gender-chart {
+  margin-left: 70px;
+}
 .chart-wrapper {
   margin-top: 20px;
+  display: flex;
+  flex-direction: row;
 }
 </style>

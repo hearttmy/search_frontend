@@ -20,7 +20,7 @@ export default {
   name: "Tags",
   data() {
     return {
-      types: ["area", "sort", "price", "level"],
+      types: ["area", "level", "price", "sort"],
     };
   },
   methods: {
@@ -37,6 +37,7 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  height: 30px;
 }
 
 .tag {

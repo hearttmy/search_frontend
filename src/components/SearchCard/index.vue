@@ -5,6 +5,7 @@
       <div class="text-wrapper">
         <div class="caption" @click="handleClick">{{ item.sight }}</div>
         <div class="area-hot">
+          <div v-if="item.level" class="level-wrapper">{{ item.level }}</div>
           <div>[{{ item.area }}]</div>
           <div class="hot">
             评分：
@@ -150,5 +151,10 @@ export default {
 
 .count {
   margin-top: 10px;
+}
+.level-wrapper {
+  margin-right: 10px;
+  color: #f60;
+  font-weight: bold;
 }
 </style>
